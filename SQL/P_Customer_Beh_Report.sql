@@ -27,14 +27,23 @@ group by item_purchased
 order by avg(review_rating) desc
 limit 5;
 
-
 --Q4. Compare the average Purchase Amounts between Standard and Express Shipping.
-
-
+select 
+		shipping_type,
+		round(avg(purchase_amount),2)
+from customer
+where shipping_type in ('Standard','Express')
+group by shipping_type;
 
 --Q5. Do subscribed customers spend more? Compare average spend and total revenue between subscribers and non-subscribers.
-
-
+select 
+		subscription_status,
+		count(customer_id) as total_customer,
+		round(avg(purchase_amount),2) as avg_spend,
+		round(sum(purchase_amount),2) as total_revenue
+from customer
+group by subscription_status
+order by total_revenue, avg_spend desc;
 
 --Q6. Which 5 products have the highest percentage of purchases with discounts applied?
 --Q7. Segment customers into New, Returning, and Loyal based on their total number of previous purchases, and show the count of each segment.
