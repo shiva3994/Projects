@@ -1,0 +1,35 @@
+Here are 6–7 project questions for each tool, building on the dataset. I've kept them beginner-friendly and grounded in the actual columns (genres, budget, gross, runtime, ratings, votes, countries, years).
+
+## Python (EDA + Visualizations)
+
+1. **Ratings distribution** – What does the distribution of `Averagerating` look like across the Top 250? (Histogram + boxplot — are most movies clustered tightly near 8.0–8.5, or spread out?)
+2. **Genre popularity** – Which genres appear most often in the Top 250? (Parse the `Genres` list-strings, count occurrences, plot a horizontal bar chart of top genres.)
+3. **Budget vs. rating** – Does spending more money make a better movie? (Scatter plot of `Budget` vs. `Averagerating`, colored by genre.)
+4. **Budget vs. box office** – Does a bigger budget guarantee bigger box office returns? (Scatter plot of `Budget` vs. `Grossworldwide`, maybe add a trend line.)
+5. **Runtime trends over time** – Have movies gotten longer over the decades? (Line chart of average `Runtimeminutes` by decade, using `Startyear`.)
+6. **Votes vs. rating** – Do more popular (highly-voted) movies tend to rate higher, or is popularity independent of quality? (Scatter plot of `Numvotes` vs. `Averagerating`, log-scale on votes since the range is huge.)
+7. **Country of origin breakdown** – Which countries produce the most Top-250-caliber films? (Parse `Countriesoforigin`, plot a bar chart or pie chart of movie counts per country.)
+
+## SQL
+
+1. **Top-rated genre** – Which genre has the highest average `Averagerating` (with at least 5 movies in that genre)?
+2. **Decade leaders** – What is the highest-grossing movie per decade? (`GROUP BY` decade, `MAX(Grossworldwide)`, join back to get the title.)
+3. **Budget efficiency** – Which movies had the best "return ratio" (`Grossworldwide / Budget`), and does that correlate with rating?
+4. **Content rating breakdown** – How many Top 250 movies fall into each `Contentrating` (R, PG-13, etc.), and what's their average rating per category?
+5. **Prolific production companies** – Which production companies appear most often across the Top 250? (Requires unpacking the `Productioncompanies` field into a junction table.)
+6. **Runtime buckets** – Group movies into runtime buckets (e.g. <90 min, 90–120, 120–150, 150+) and find the average rating per bucket — do longer movies rate higher?
+7. **Missing data audit** – Write a query to count and list which movies are missing `Budget`, `Metascore`, or `Releasedate` — useful as a data-quality check before deeper analysis.
+
+## Power BI
+
+1. **Ratings overview dashboard** – KPI cards for average rating, average runtime, and total votes, with a histogram/column chart of rating distribution.
+2. **Genre explorer** – A bar chart of movie count and average rating by genre, with a slicer to filter by decade.
+3. **Budget vs. gross scatter** – An interactive scatter plot (budget vs. worldwide gross) with tooltips showing title, genre, and rating on hover.
+4. **Timeline of releases** – A line/area chart showing number of Top-250 movies released per decade — are recent decades over- or under-represented?
+5. **Geographic spread** – A map visual showing count of movies by `Countriesoforigin`.
+6. **Content rating vs. audience** – A stacked bar chart of `Contentrating` vs. average `Numvotes`, to see if certain ratings (R vs PG-13) drive more audience engagement.
+7. **Full interactive dashboard** – Combine 3–4 of the above visuals onto a single page with cross-filtering slicers (genre, decade, country) so a viewer can drill down freely — this is usually the "capstone" piece for a portfolio.
+
+A tip since you're new: for Python and SQL, pick **one** question to build fully end-to-end (clean code, clear chart, short write-up) rather than doing all seven shallowly — that's what stands out in a portfolio. For Power BI, question 7 (the combined dashboard) is really just questions 1–6 assembled together, so that's naturally your final deliverable.
+
+Want me to help you parse the `Genres`/`Countriesoforigin` columns in Python first, since almost every question above depends on that step?
