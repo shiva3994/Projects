@@ -29,7 +29,3 @@ Here are 6–7 project questions for each tool, building on the dataset. I've ke
 5. **Geographic spread** – A map visual showing count of movies by `Countriesoforigin`.
 6. **Content rating vs. audience** – A stacked bar chart of `Contentrating` vs. average `Numvotes`, to see if certain ratings (R vs PG-13) drive more audience engagement.
 7. **Full interactive dashboard** – Combine 3–4 of the above visuals onto a single page with cross-filtering slicers (genre, decade, country) so a viewer can drill down freely — this is usually the "capstone" piece for a portfolio.
-
-A tip since you're new: for Python and SQL, pick **one** question to build fully end-to-end (clean code, clear chart, short write-up) rather than doing all seven shallowly — that's what stands out in a portfolio. For Power BI, question 7 (the combined dashboard) is really just questions 1–6 assembled together, so that's naturally your final deliverable.
-
-Want me to help you parse the `Genres`/`Countriesoforigin` columns in Python first, since almost every question above depends on that step?
