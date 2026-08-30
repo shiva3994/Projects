@@ -1,0 +1,67 @@
+## Python (Pandas) — Beginner, 20 Questions
+
+**Loading & Exploring**
+1. Load the CSV into a DataFrame and display the first 5 rows.
+2. Check the shape of the DataFrame (rows, columns).
+3. List all column names.
+4. Check the data types of each column using `.info()`.
+5. Check how many missing (null) values exist in each column.
+
+**Basic Filtering & Selection**
+6. Select just the `Country Name` and `Region` columns.
+7. Filter the DataFrame to show only rows where `Region` == `'South Asia'`.
+8. Find all rows for `'India'`.
+9. Drop the duplicate `2019` column (there are two — keep only one).
+10. Count how many unique countries are in the dataset.
+
+**Simple Calculations**
+11. Find the average CO2 emission value for the year `2019` across all countries.
+12. Find which country had the highest CO2 emission in `2019`.
+13. Find which country had the lowest CO2 emission in `2019` (excluding missing values).
+14. Count how many countries belong to each `Region` using `.value_counts()`.
+15. Calculate the total (sum) of CO2 emissions for `2019` grouped by `Region`.
+
+**Simple Cleaning**
+16. Replace missing values in the year columns with `0`.
+17. Rename the column `Country Name` to `country_name` (no spaces).
+18. Sort the DataFrame by `2019` values, highest to lowest.
+19. Filter out rows where `2019` value is missing (`NaN`).
+
+**Simple Visualization**
+20. Plot a bar chart of the top 10 countries by 2019 CO2 emissions using matplotlib.
+
+## SQL — Beginner, 20 Questions
+
+**Basic SELECT**
+1. Select all columns and all rows from the table.
+2. Select only `Country_Name` and `Region`.
+3. Select the first 10 rows only (`TOP 10`).
+
+**WHERE Filtering**
+4. Find all rows where `Region = 'South Asia'`.
+5. Find the row for `Country_Name = 'India'`.
+6. Find all countries where `[2019]` is greater than 5.
+7. Find all countries where `[2019]` is `NULL`.
+
+**Sorting**
+8. Sort all countries by `[2019]` value, highest to lowest.
+9. Sort all countries by `Country_Name` alphabetically.
+
+**Aggregates**
+10. Count the total number of rows in the table.
+11. Count how many distinct countries exist.
+12. Find the average `[2019]` value across all countries.
+13. Find the maximum `[2019]` value.
+14. Find the minimum `[2019]` value (excluding NULLs).
+
+**GROUP BY**
+15. Count how many countries belong to each `Region`.
+16. Find the average `[2019]` value per `Region`.
+17. Find the total `[2019]` value summed per `Region`.
+
+**Simple Filtering + Aggregation**
+18. Find regions where the average `[2019]` value is greater than 3 (using `HAVING`).
+
+**Basic Joins/Combining Concepts (still simple)**
+19. Find the top 5 countries with the highest `[2019]` emissions.
+20. Find countries where `[2019]` emissions increased compared to `[1990]` (simple column comparison, no window functions).
