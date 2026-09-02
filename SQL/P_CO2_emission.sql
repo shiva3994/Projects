@@ -68,22 +68,46 @@ ORDER BY country_name ASC;
 
 -- 10. Count the total number of rows in the table.
 
-
+SELECT
+	COUNT(*) AS total_rows
+FROM dbo.CO2emission;
 
 -- 11. Count how many distinct countries exist.
 
+SELECT
+	COUNT(DISTINCT(country_name)) AS distinct_countries
+FROM dbo.CO2emission;
 
 -- 12. Find the average [2019] value across all countries.
 
+SELECT
+	AVG([2019]) as avg_value
+FROM dbo.CO2emission;
 
 -- 13. Find the maximum [2019] value.
 
+SELECT
+	MAX([2019]) as max_value
+FROM dbo.CO2emission;
 
 -- 14. Find the minimum [2019] value (excluding NULLs).
 
+SELECT
+	MIN([2019]) as min_value
+FROM dbo.CO2emission;
+
+SELECT
+    MIN(CAST([2019] AS DECIMAL(10,4))) as min_value
+FROM dbo.CO2emission;
+
 -- GROUP BY
+
 -- 15. Count how many countries belong to each Region.
+
+
 -- 16. Find the average [2019] value per Region.
+
+
 -- 17. Find the total [2019] value summed per Region.
 
 -- Simple Filtering + Aggregation
