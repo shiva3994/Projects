@@ -1,15 +1,39 @@
+-- Basic SELECT
+
+-- 1. Select all columns and all rows from the table.
+
 SELECT *
 FROM dbo.CO2emission;
 
--- Basic SELECT
--- 1. Select all columns and all rows from the table.
 -- 2. Select only Country_Name and Region.
+
+SELECT
+		country_name,
+		Region
+FROM dbo.CO2emission;
+
 -- 3. Select the first 10 rows only (TOP 10).
 
+SELECT TOP 10 *
+FROM dbo.CO2emission;
+
 --WHERE Filtering
+
 -- 4. Find all rows where Region = 'South Asia'.
+
+SELECT *
+FROM dbo.CO2emission
+WHERE Region = 'South Asia';
+
 -- 5. Find the row for Country_Name = 'India'.
+
+SELECT *
+FROM dbo.CO2emission
+WHERE country_name = 'India';
+
 -- 6. Find all countries where [2019] is greater than 5.
+
+
 -- 7. Find all countries where [2019] is NULL.
 
 -- Sorting
