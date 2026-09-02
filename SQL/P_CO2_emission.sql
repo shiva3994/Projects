@@ -48,14 +48,37 @@ FROM dbo.CO2emission
 WHERE [2019] IS NULL;
 
 -- Sorting
+
 -- 8. Sort all countries by [2019] value, highest to lowest.
+
+SELECT
+	country_name,
+	[2019]
+FROM dbo.CO2emission
+ORDER BY [2019] DESC;
+
 -- 9. Sort all countries by Country_Name alphabetically.
 
+SELECT
+	country_name
+FROM dbo.CO2emission
+ORDER BY country_name ASC;
+
 -- Aggregates
+
 -- 10. Count the total number of rows in the table.
+
+
+
 -- 11. Count how many distinct countries exist.
+
+
 -- 12. Find the average [2019] value across all countries.
+
+
 -- 13. Find the maximum [2019] value.
+
+
 -- 14. Find the minimum [2019] value (excluding NULLs).
 
 -- GROUP BY
