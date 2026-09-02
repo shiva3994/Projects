@@ -33,8 +33,19 @@ WHERE country_name = 'India';
 
 -- 6. Find all countries where [2019] is greater than 5.
 
+SELECT
+	country_name,
+	[2019]
+FROM dbo.CO2emission
+WHERE [2019] > 5;
 
 -- 7. Find all countries where [2019] is NULL.
+
+SELECT
+	country_name,
+	[2019]
+FROM dbo.CO2emission
+WHERE [2019] IS NULL;
 
 -- Sorting
 -- 8. Sort all countries by [2019] value, highest to lowest.
