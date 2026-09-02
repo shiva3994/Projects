@@ -104,15 +104,36 @@ FROM dbo.CO2emission;
 
 -- 15. Count how many countries belong to each Region.
 
+SELECT
+	Region,
+	COUNT(country_name) AS country_count
+FROM dbo.CO2emission
+GROUP BY Region;
 
 -- 16. Find the average [2019] value per Region.
 
+SELECT
+	Region,
+	AVG([2019]) AS avg_count
+FROM dbo.CO2emission
+GROUP BY Region
+ORDER BY avg_count DESC;
 
 -- 17. Find the total [2019] value summed per Region.
 
+SELECT
+	Region,
+	SUM([2019]) AS total_count
+FROM dbo.CO2emission
+GROUP BY Region
+ORDER BY total_count DESC;
+
 -- Simple Filtering + Aggregation
+
 -- 18. Find regions where the average [2019] value is greater than 3 (using HAVING).
 
 -- Basic Joins/Combining Concepts
+
 -- 19. Find the top 5 countries with the highest [2019] emissions.
+
 -- 20. Find countries where [2019] emissions increased compared to.
