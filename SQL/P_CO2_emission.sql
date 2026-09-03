@@ -1,3 +1,5 @@
+USE P_CO2_emission;
+
 -- Basic SELECT
 
 -- 1. Select all columns and all rows from the table.
@@ -131,6 +133,13 @@ ORDER BY total_count DESC;
 -- Simple Filtering + Aggregation
 
 -- 18. Find regions where the average [2019] value is greater than 3 (using HAVING).
+
+SELECT
+	Region,
+	AVG([2019]) as avg_2019
+FROM dbo.CO2emission
+GROUP BY Region
+HAVING AVG([2019]) > 3;
 
 -- Basic Joins/Combining Concepts
 
