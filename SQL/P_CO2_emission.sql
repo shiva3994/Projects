@@ -136,7 +136,7 @@ ORDER BY total_count DESC;
 
 SELECT
 	Region,
-	AVG([2019]) as avg_2019
+	AVG([2019]) as avg_emission
 FROM dbo.CO2emission
 GROUP BY Region
 HAVING AVG([2019]) > 3;
@@ -144,5 +144,12 @@ HAVING AVG([2019]) > 3;
 -- Basic Joins/Combining Concepts
 
 -- 19. Find the top 5 countries with the highest [2019] emissions.
+
+SELECT TOP 5
+	country_name,
+	MAX([2019]) as max_emission
+FROM dbo.CO2emission
+GROUP BY country_name
+ORDER BY MAX([2019]) DESC;
 
 -- 20. Find countries where [2019] emissions increased compared to.
