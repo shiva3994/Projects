@@ -152,4 +152,13 @@ FROM dbo.CO2emission
 GROUP BY country_name
 ORDER BY MAX([2019]) DESC;
 
--- 20. Find countries where [2019] emissions increased compared to.
+-- 20. Find countries where [2019] emissions increased compared to 2018.
+
+SELECT
+    country_name,
+    [2018] AS emission_2018,
+    [2019] AS emission_2019,
+    [2019] - [2018] AS increase
+FROM dbo.CO2emission
+WHERE [2019] > [2018]
+ORDER BY increase DESC;
