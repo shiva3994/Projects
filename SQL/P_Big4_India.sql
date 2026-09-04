@@ -61,7 +61,9 @@ WHERE Profit < 0;
 
 -- 10. Find all employees where Age <= 25.
 
-
+SELECT *
+FROM dbo.Employees
+WHERE Age <= 25;
 
 -- Type C — NULL handling
 -- 11. Find all rows in Employees where Salary IS NULL.
