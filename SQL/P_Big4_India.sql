@@ -37,17 +37,31 @@ WHERE Year = 2020;
 
 -- 6. Find all employees with Salary > 80000.
 
+SELECT *
+FROM dbo.Employees
+WHERE Salary > 80000;
 
 -- 7. Find all clients with ContractValue < 5000000.
 
+SELECT *
+FROM dbo.Clients
+WHERE ContractValue < 5000000;
 
 -- 8. Find all projects with Budget >= 7000000.
 
+SELECT *
+FROM dbo.Projects
+WHERE Budget >= 7000000;
 
 -- 9. Find all financial records where Profit < 0 (loss-making quarters).
 
+SELECT *
+FROM dbo.Company_Financials
+WHERE Profit < 0;
 
 -- 10. Find all employees where Age <= 25.
+
+
 
 -- Type C — NULL handling
 -- 11. Find all rows in Employees where Salary IS NULL.
