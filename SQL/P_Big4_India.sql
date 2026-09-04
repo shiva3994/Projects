@@ -16,18 +16,37 @@ WHERE Department = 'Finance';
 
 -- 3. Select all projects where Status = 'On Hold'.
 
-
+SELECT *
+FROM dbo.Projects
+WHERE Status = 'On Hold';
 
 -- 4. Select all offices where Country = 'India'.
 
+SELECT *
+FROM dbo.Office_Locations
+WHERE Country = 'India';
 
 -- 5. Select all financial records where Year = 2020.
 
+SELECT *
+FROM dbo.Company_Financials
+WHERE Year = 2020;
+
 -- Type B — Comparison operators
+
+
 -- 6. Find all employees with Salary > 80000.
+
+
 -- 7. Find all clients with ContractValue < 5000000.
+
+
 -- 8. Find all projects with Budget >= 7000000.
+
+
 -- 9. Find all financial records where Profit < 0 (loss-making quarters).
+
+
 -- 10. Find all employees where Age <= 25.
 
 -- Type C — NULL handling
