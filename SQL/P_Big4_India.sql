@@ -1,10 +1,22 @@
 USE P_Big4_India;
 
 -- Type A — Basic SELECT + WHERE (single condition)
+
 -- 1. Select all clients where Industry = 'Retail'.
+
+SELECT *
+FROM dbo.Clients
+WHERE Industry = 'Retail';
+
 -- 2. Select all employees where Department = 'Finance'.
+
+
 -- 3. Select all projects where Status = 'On Hold'.
+
+
 -- 4. Select all offices where Country = 'India'.
+
+
 -- 5. Select all financial records where Year = 2020.
 
 -- Type B — Comparison operators
