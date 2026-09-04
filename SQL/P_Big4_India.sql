@@ -10,8 +10,12 @@ WHERE Industry = 'Retail';
 
 -- 2. Select all employees where Department = 'Finance'.
 
+SELECT *
+FROM dbo.Employees
+WHERE Department = 'Finance';
 
 -- 3. Select all projects where Status = 'On Hold'.
+
 
 
 -- 4. Select all offices where Country = 'India'.
