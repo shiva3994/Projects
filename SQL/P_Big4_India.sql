@@ -143,11 +143,19 @@ FROM Employees;
 
 -- 2. Find the total (SUM) ContractValue across all clients.
 
-
+SELECT
+	SUM(ContractValue) AS total_value
+FROM Clients;
 
 -- 3. Find the maximum Budget across all projects.
 
+SELECT
+	MAX(Budget) as max_budget
+FROM Projects;
+
 -- 4. Find the minimum Profit across all financial records.
+
+
 
 -- 5. Count the total number of offices.
 
