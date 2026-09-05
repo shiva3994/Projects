@@ -155,16 +155,32 @@ FROM Projects;
 
 -- 4. Find the minimum Profit across all financial records.
 
-
+SELECT
+	MIN(Profit) as min_profit
+FROM Company_Financials;
 
 -- 5. Count the total number of offices.
 
+SELECT
+	COUNT(*) AS total_count_office
+FROM Office_Locations;
 
 -- Type B — GROUP BY with COUNT
+
 -- 6. Count how many employees work in each Department.
+
+SELECT
+	Department,
+	COUNT(*) AS total_employees
+FROM Employees
+GROUP BY Department;
+
 -- 7. Count how many clients exist per Industry.
+
 -- 8. Count how many projects exist per Status.
+
 -- 9. Count how many offices exist per Country.
+
 -- 10. Count how many financial records exist per Company.
 
 -- Type C — GROUP BY with SUM/AVG
