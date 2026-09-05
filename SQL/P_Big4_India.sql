@@ -103,8 +103,15 @@ WHERE City IS NULL;
 
 -- 16. Find all clients whose Company name starts with 'T'.
 
+SELECT *
+FROM Clients
+WHERE Company LIKE 'T%';
 
--- 17. Find all employees whose Role contains the word 'Engineer'.
+-- 17. Find all employees whose Department contains the word 'Engineer'.
+
+SELECT *
+FROM Employees
+WHERE Department LIKE '%Engineer%'
 
 
 -- 18. Find all offices located in a City starting with 'Pu'.
