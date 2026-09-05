@@ -111,11 +111,13 @@ WHERE Company LIKE 'T%';
 
 SELECT *
 FROM Employees
-WHERE Department LIKE '%Engineer%'
-
+WHERE Department LIKE '%Engineer%';
 
 -- 18. Find all offices located in a City starting with 'Pu'.
 
+SELECT * 
+FROM Office_Locations
+WHERE City LIKE 'Pu%';
 
 -- 19. Find all technologies where Technology contains 'SQL'.
 
