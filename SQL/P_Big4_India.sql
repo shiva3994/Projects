@@ -121,9 +121,15 @@ WHERE City LIKE 'Pu%';
 
 -- 19. Find all technologies where Technology contains 'SQL'.
 
+SELECT *
+FROM Technologies
+WHERE Technology LIKE '%SQL%';
 
 -- 20. Find all clients in an Industry ending with 'care' (e.g. Healthcare).
 
+SELECT *
+FROM Clients
+WHERE Industry LIKE '%care';
 
 -- DAY 2 
 
