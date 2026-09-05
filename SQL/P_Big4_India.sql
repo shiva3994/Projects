@@ -220,18 +220,48 @@ GROUP BY Department;
 -- 12. Find the total ContractValue per Industry.
 
 SELECT 
+	Industry,
+	SUM(ContractValue) AS total_ContractValue
+FROM Clients
+GROUP BY Industry;
 
 -- 13. Find the average Budget per Technology (from Projects).
 
+SELECT
+	Technology,
+	AVG(Budget) AS avg_budget
+FROM Projects
+GROUP BY Technology;
 
 -- 14. Find the total Revenue per Company (from Company_Financials).
 
+SELECT
+	Company,
+	SUM(Revenue) AS total_revenue
+FROM Company_Financials
+GROUP BY Company;
 
 -- 15. Find the average Popularity per Technology (from Technologies).
 
+SELECT
+	Technology,
+	AVG(Popularity) AS avg_popularity
+FROM Technologies
+GROUP BY Technology;
+
 -- Type D — GROUP BY with MIN/MAX
+
 -- 16. Find the highest-paid employee's salary per Department.
+
+
 -- 17. Find the largest ContractValue per Industry.
+
+
 -- 18. Find the smallest Budget per Status.
+
+
 -- 19. Find the highest Profit per Company.
+
+
 -- 20. Find the highest Popularity score per Technology.
+
