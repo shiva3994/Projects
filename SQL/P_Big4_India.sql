@@ -193,11 +193,19 @@ GROUP BY Status;
 
 -- 9. Count how many offices exist per Country.
 
-
+SELECT
+	Country,
+	COUNT(*) AS count_by_office
+FROM Office_Locations
+GROUP BY Country;
 
 -- 10. Count how many financial records exist per Company.
 
-
+SELECT
+	Company,
+	COUNT(*) AS count_by_financial_records
+FROM Company_Financials
+GROUP BY Company;
 
 -- Type C — GROUP BY with SUM/AVG
 -- 11. Find the average Salary per Department.
