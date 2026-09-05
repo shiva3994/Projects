@@ -137,7 +137,13 @@ WHERE Industry LIKE '%care';
 
 -- 1. Find the average Salary across all employees.
 
+SELECT
+	AVG(Salary) AS avg_salary
+FROM Employees;
+
 -- 2. Find the total (SUM) ContractValue across all clients.
+
+
 
 -- 3. Find the maximum Budget across all projects.
 
