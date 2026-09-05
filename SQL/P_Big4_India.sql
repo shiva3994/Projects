@@ -208,10 +208,19 @@ FROM Company_Financials
 GROUP BY Company;
 
 -- Type C — GROUP BY with SUM/AVG
+
 -- 11. Find the average Salary per Department.
+
+
 -- 12. Find the total ContractValue per Industry.
+
+
 -- 13. Find the average Budget per Technology (from Projects).
+
+
 -- 14. Find the total Revenue per Company (from Company_Financials).
+
+
 -- 15. Find the average Popularity per Technology (from Technologies).
 
 -- Type D — GROUP BY with MIN/MAX
