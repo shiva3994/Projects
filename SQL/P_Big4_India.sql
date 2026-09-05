@@ -211,9 +211,15 @@ GROUP BY Company;
 
 -- 11. Find the average Salary per Department.
 
+SELECT
+	Department,
+	AVG(Salary) AS avg_dep_salary
+FROM Employees
+GROUP BY Department;
 
 -- 12. Find the total ContractValue per Industry.
 
+SELECT 
 
 -- 13. Find the average Budget per Technology (from Projects).
 
