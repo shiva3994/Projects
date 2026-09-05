@@ -171,17 +171,33 @@ FROM Office_Locations;
 
 SELECT
 	Department,
-	COUNT(*) AS total_employees
+	COUNT(*) AS count_by_employees
 FROM Employees
 GROUP BY Department;
 
 -- 7. Count how many clients exist per Industry.
 
+SELECT
+	Industry,
+	COUNT(*) AS count_by_clients
+FROM Clients
+GROUP BY Industry;
+
 -- 8. Count how many projects exist per Status.
+
+SELECT
+	Status,
+	COUNT(*) AS count_by_status
+FROM Projects
+GROUP BY Status;
 
 -- 9. Count how many offices exist per Country.
 
+
+
 -- 10. Count how many financial records exist per Company.
+
+
 
 -- Type C — GROUP BY with SUM/AVG
 -- 11. Find the average Salary per Department.
