@@ -259,18 +259,28 @@ SELECT
 FROM Employees
 GROUP BY Department;
 
-
 -- 17. Find the largest ContractValue per Industry.
 
-
+SELECT
+	Industry,
+	MAX(ContractValue) AS largest_ContractValue
+FROM Clients
+GROUP BY Industry;
 
 -- 18. Find the smallest Budget per Status.
 
-
+SELECT
+	Status,
+	MIN(Budget) AS smallest_budget
+FROM Projects
+GROUP BY Status;
 
 -- 19. Find the highest Profit per Company.
 
+SELECT 
 
+FROM Company_Financials
+GROUP BY Company;
 
 -- 20. Find the highest Popularity score per Technology.
 
