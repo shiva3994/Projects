@@ -253,15 +253,25 @@ GROUP BY Technology;
 
 -- 16. Find the highest-paid employee's salary per Department.
 
+SELECT
+	Department,
+	MAX(Salary) AS highest_paid
+FROM Employees
+GROUP BY Department;
+
 
 -- 17. Find the largest ContractValue per Industry.
+
 
 
 -- 18. Find the smallest Budget per Status.
 
 
+
 -- 19. Find the highest Profit per Company.
 
 
+
 -- 20. Find the highest Popularity score per Technology.
+
 
