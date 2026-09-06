@@ -278,10 +278,15 @@ GROUP BY Status;
 -- 19. Find the highest Profit per Company.
 
 SELECT 
-
+	Company,
+	MAX(Profit) AS highest_profit
 FROM Company_Financials
 GROUP BY Company;
 
 -- 20. Find the highest Popularity score per Technology.
 
-
+SELECT
+	Technology,
+	MAX(Popularity) AS highest_popularity
+FROM Technologies
+GROUP BY Technology;
