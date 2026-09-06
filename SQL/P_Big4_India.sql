@@ -290,3 +290,33 @@ SELECT
 	MAX(Popularity) AS highest_popularity
 FROM Technologies
 GROUP BY Technology;
+
+-- DAY 3 — Sorting, TOP/LIMIT, String Work
+
+-- Type A — ORDER BY basics
+-- 1. Sort Employees by Salary descending.
+-- 2. Sort Clients by ContractValue ascending.
+-- 3. Sort Projects by Budget descending.
+-- 4. Sort Company_Financials by Revenue descending.
+-- 5. Sort Technologies by Popularity descending.
+
+-- Type B — TOP N
+-- 6. Find the top 5 highest-paid employees.
+-- 7. Find the top 3 clients by ContractValue.
+-- 8. Find the top 5 projects by Budget.
+-- 9. Find the top 3 companies by Revenue in a given year.
+-- 10. Find the top 5 technologies by Popularity.
+
+-- Type C — Multi-column sorting
+-- 11. Sort Employees by Department ascending, then Salary descending within each department.
+-- 12. Sort Clients by Industry ascending, then ContractValue descending.
+-- 13. Sort Projects by Status ascending, then Budget descending.
+-- 14. Sort Company_Financials by Company ascending, then Year descending.
+-- 15. Sort Offices by Country ascending, then City ascending.
+
+-- Type D — String functions
+-- 16. Convert all Company names in Clients to uppercase using UPPER().
+-- 17. Find the length of each Role value in Employees using LEN().
+-- 18. Concatenate City and Country from Office_Locations into one column, separated by a comma.
+-- 19. Extract the first 3 letters of each Technology name using LEFT().
+-- 20. Trim any extra spaces from Company names using TRIM().

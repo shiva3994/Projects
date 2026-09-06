@@ -17,7 +17,92 @@ In pandas, assume each CSV is loaded as a lowercase-suffixed DataFrame:
 
 ---
 
+## DAY 1 — Basics: SELECT, WHERE, Exploring
+
+### SQL
+
+**Type A — Basic SELECT + WHERE (single condition)**
+1. Select all clients where `Industry = 'Retail'`.
+2. Select all employees where `Department = 'Finance'`.
+3. Select all projects where `Status = 'On Hold'`.
+4. Select all offices where `Country = 'India'`.
+5. Select all financial records where `Year = 2020`.
+
+**Type B — Comparison operators**
+6. Find all employees with `Salary > 80000`.
+7. Find all clients with `ContractValue < 5000000`.
+8. Find all projects with `Budget >= 7000000`.
+9. Find all financial records where `Profit < 0` (loss-making quarters).
+10. Find all employees where `Age <= 25`.
+
+**Type C — NULL handling**
+11. Find all rows in `Employees` where `Salary IS NULL`.
+12. Find all rows in `Projects` where `Client_ID IS NULL`.
+13. Find all rows in `Company_Financials` where `Profit IS NULL`.
+14. Find all rows in `Technologies` where `Popularity IS NULL`.
+15. Find all rows in `Office_Locations` where `City IS NULL`.
+
+**Type D — Pattern matching (LIKE)**
+16. Find all clients whose `Company` name starts with `'T'`.
+17. Find all employees whose `Role` contains the word `'Engineer'`.
+18. Find all offices located in a `City` starting with `'Pu'`.
+19. Find all technologies where `Technology` contains `'SQL'`.
+20. Find all clients in an `Industry` ending with `'care'` (e.g. Healthcare).
+
 ### Python
+
+**Type A — Load & explore**
+1. Load `clients.csv` and display the first 5 rows and the shape.
+2. Load `employees.csv` and check data types with `.info()`.
+3. Load `projects.csv` and check for missing values per column.
+4. Load `offices.csv` and list all column names.
+5. Load `technologies.csv` and check for duplicate rows with `.duplicated()`.
+
+**Type B — Column selection**
+6. From `clients`, select just `Company` and `Industry`.
+7. From `employees`, select `Employee_ID`, `Role`, and `Salary`.
+8. From `projects`, select `Project_ID`, `Technology`, and `Status`.
+9. From `offices`, select `Company` and `City`.
+10. From `financials`, select `Company`, `Year`, and `Revenue`.
+
+**Type C — Filtering rows**
+11. Filter `clients` to only rows where `Industry == 'Retail'`.
+12. Filter `employees` to only rows where `Department == 'AI'`.
+13. Filter `projects` to only rows where `Status == 'In Progress'`.
+14. Filter `offices` to only rows where `Country == 'India'`.
+15. Filter `financials` to only rows where `Year == 2021`.
+
+**Type D — `.value_counts()`**
+16. Count how many clients fall into each `Industry`.
+17. Count how many employees fall into each `Department`.
+18. Count how many projects fall into each `Status`.
+19. Count how many offices exist per `Company`.
+20. Count how many technologies fall into each `Technology` name.
+
+
+
+### Python
+
+**Type A — Single aggregate**
+1. Calculate the average `Salary` in `employees`.
+2. Calculate the total `ContractValue` in `clients`.
+3. Find the maximum `Budget` in `projects`.
+4. Find the minimum `Profit` in `financials`.
+5. Count the total number of rows in `offices`.
+
+**Type B — `.groupby()` + `.count()` / `.size()`**
+6. Group `employees` by `Department` and count employees in each.
+7. Group `clients` by `Industry` and count clients in each.
+8. Group `projects` by `Status` and count projects in each.
+9. Group `offices` by `Country` and count offices in each.
+10. Group `financials` by `Company` and count records in each.
+
+**Type C — `.groupby()` + `.mean()` / `.sum()`**
+11. Group `employees` by `Department` and find average `Salary`.
+12. Group `clients` by `Industry` and find total `ContractValue`.
+13. Group `projects` by `Technology` and find average `Budget`.
+14. Group `financials` by `Company` and find total `Revenue`.
+15. Group `technologies` by `Technology` and find average `Popularity`.
 
 **Type D — `.groupby()` + `.agg()` (multiple stats at once)**
 16. Group `employees` by `Department` and get both mean and max `Salary` in one `.agg()`.
