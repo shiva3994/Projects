@@ -294,11 +294,21 @@ GROUP BY Technology;
 -- DAY 3 — Sorting, TOP/LIMIT, String Work
 
 -- Type A — ORDER BY basics
+
 -- 1. Sort Employees by Salary descending.
+
+
 -- 2. Sort Clients by ContractValue ascending.
+
+
 -- 3. Sort Projects by Budget descending.
+
+
 -- 4. Sort Company_Financials by Revenue descending.
+
+
 -- 5. Sort Technologies by Popularity descending.
+
 
 -- Type B — TOP N
 -- 6. Find the top 5 highest-paid employees.
