@@ -321,6 +321,9 @@ ORDER BY Revenue DESC;
 
 -- 5. Sort Technologies by Popularity descending.
 
+SELECT *
+FROM Technologies
+ORDER BY Popularity DESC;
 
 
 -- Type B — TOP N
