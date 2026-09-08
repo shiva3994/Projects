@@ -297,11 +297,18 @@ GROUP BY Technology;
 
 -- 1. Sort Employees by Salary descending.
 
+SELECT *
+FROM Employees
+ORDER BY Salary DESC;
 
 -- 2. Sort Clients by ContractValue ascending.
 
+SELECT *
+FROM Clients
+ORDER BY ContractValue ASC;
 
 -- 3. Sort Projects by Budget descending.
+
 
 
 -- 4. Sort Company_Financials by Revenue descending.
