@@ -309,12 +309,18 @@ ORDER BY ContractValue ASC;
 
 -- 3. Sort Projects by Budget descending.
 
-
+SELECT *
+FROM Projects
+ORDER BY Budget DESC;
 
 -- 4. Sort Company_Financials by Revenue descending.
 
+SELECT *
+FROM Company_Financials
+ORDER BY Revenue DESC;
 
 -- 5. Sort Technologies by Popularity descending.
+
 
 
 -- Type B — TOP N
