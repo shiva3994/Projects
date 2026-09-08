@@ -355,7 +355,9 @@ ORDER BY Revenue DESC;
 
 -- 10. Find the top 5 technologies by Popularity.
 
-
+SELECT TOP 5 *
+FROM Technologies
+ORDER BY Popularity;
 
 -- Type C — Multi-column sorting
 -- 11. Sort Employees by Department ascending, then Salary descending within each department.
