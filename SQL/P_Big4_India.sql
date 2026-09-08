@@ -336,13 +336,22 @@ ORDER BY salary DESC;
 
 -- 7. Find the top 3 clients by ContractValue.
 
-
+SELECT TOP 3 *
+FROM Clients
+ORDER BY ContractValue DESC;
 
 -- 8. Find the top 5 projects by Budget.
 
+SELECT TOP 5 *
+FROM Projects
+ORDER BY Budget DESC;
 
 -- 9. Find the top 3 companies by Revenue in a given year.
 
+SELECT TOP 3 *
+FROM Company_Financials
+WHERE [Year] = 2020
+ORDER BY Revenue DESC;
 
 -- 10. Find the top 5 technologies by Popularity.
 
