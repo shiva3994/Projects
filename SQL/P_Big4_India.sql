@@ -375,7 +375,13 @@ ORDER BY Industry ASC, ContractValue DESC;
 
 -- 13. Sort Projects by Status ascending, then Budget descending.
 
+SELECT *
+FROM Projects
+ORDER BY Status ASC, Budget DESC;
+
 -- 14. Sort Company_Financials by Company ascending, then Year descending.
+
+
 
 -- 15. Sort Offices by Country ascending, then City ascending.
 
