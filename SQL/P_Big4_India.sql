@@ -401,7 +401,11 @@ FROM Clients;
 
 -- 17. Find the length of each Role value in Employees using LEN().
 
-SELECT 
+SELECT
+	Role,
+	UPPER(Role) As Cap_Role,
+	LEN(Role) as Len_of_Role
+FROM Employees;
 
 -- 18. Concatenate City and Country from Office_Locations into one column, separated by a comma.
 
