@@ -381,9 +381,12 @@ ORDER BY Status ASC, Budget DESC;
 
 -- 14. Sort Company_Financials by Company ascending, then Year descending.
 
-
+SELECT *
+FROM Company_Financials
+ORDER BY Company, [Year] DESC;
 
 -- 15. Sort Offices by Country ascending, then City ascending.
+
 
 
 -- Type D — String functions
