@@ -395,9 +395,13 @@ ORDER BY Country ASC, City DESC;
 
 -- 16. Convert all Company names in Clients to uppercase using UPPER().
 
+SELECT
+	UPPER(Company) AS Cap_Company_name
+FROM Clients;
 
 -- 17. Find the length of each Role value in Employees using LEN().
 
+SELECT 
 
 -- 18. Concatenate City and Country from Office_Locations into one column, separated by a comma.
 
