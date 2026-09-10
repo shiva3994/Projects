@@ -409,8 +409,15 @@ FROM Employees;
 
 -- 18. Concatenate City and Country from Office_Locations into one column, separated by a comma.
 
+SELECT
+	CONCAT(City ,', ', Country)
+FROM Office_Locations
 
 -- 19. Extract the first 3 letters of each Technology name using LEFT().
+
+SELECT 
+	LEFT(Technology, 3) AS Short_Tech
+FROM Technologies;
 
 
 -- 20. Trim any extra spaces from Company names using TRIM().
