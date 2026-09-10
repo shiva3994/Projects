@@ -419,7 +419,77 @@ SELECT
 	LEFT(Technology, 3) AS Short_Tech
 FROM Technologies;
 
-
 -- 20. Trim any extra spaces from Company names using TRIM().
 
+SELECT
+	TRIM(Company) AS Trimmed
+FROM Office_Locations;
 
+-- DAY 4 — Joins / Merge
+
+-- Type A — Basic INNER JOIN (2 tables)
+
+-- 1. Join Projects and Clients on the shared Company column
+
+
+-- 2. Join Employees and Projects on Employee_ID
+
+
+-- 3. Join Financials and Locations on Company
+
+
+-- 4. Join Projects and Technologies on Project_ID
+
+
+-- 5. Join Clients and Financials on Company
+
+
+-- Type B — JOIN + WHERE filter
+
+-- 6. Filter the joined tables for the Retail industry
+
+
+-- 7. Filter the joined tables for In Progress projects
+
+
+-- 8. Filter the joined tables for offices in India
+
+
+-- 9. Filter the joined tables for Azure technology
+
+
+-- 10. Filter the joined tables for budgets over 5,000,000
+
+
+-- Type C — JOIN + aggregate
+
+-- 11. Group by industry and calculate total budget sum
+
+
+-- 12. Group by department and count associated projects
+
+
+-- 13. Group by country and calculate average revenue
+
+
+-- 14. Group by project status and calculate average popularity
+
+
+-- 15. Group by client country and calculate average budget
+
+
+-- Type D — LEFT JOIN (finding unmatched rows)
+
+-- 16. Find clients where the matching project ID is missing
+
+
+-- 17. Find employees where the matching project assignment is missing
+
+
+-- 18. Find financial records where the matching office location is missing
+
+
+-- 19. Find technologies where the matching project is missing
+
+
+-- 20. Find office locations where the matching financial record is missing
