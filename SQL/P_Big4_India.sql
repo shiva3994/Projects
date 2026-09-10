@@ -363,7 +363,13 @@ ORDER BY Popularity;
 
 -- 11. Sort Employees by Department ascending, then Salary descending within each department.
 
+SELECT *
+FROM Employees
+ORDER BY Department ASC, Salary DESC;
+
 -- 12. Sort Clients by Industry ascending, then ContractValue descending.
+
+
 
 -- 13. Sort Projects by Status ascending, then Budget descending.
 
