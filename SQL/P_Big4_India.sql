@@ -392,8 +392,19 @@ FROM Office_Locations
 ORDER BY Country ASC, City DESC;
 
 -- Type D — String functions
+
 -- 16. Convert all Company names in Clients to uppercase using UPPER().
+
+
 -- 17. Find the length of each Role value in Employees using LEN().
+
+
 -- 18. Concatenate City and Country from Office_Locations into one column, separated by a comma.
+
+
 -- 19. Extract the first 3 letters of each Technology name using LEFT().
+
+
 -- 20. Trim any extra spaces from Company names using TRIM().
+
+
