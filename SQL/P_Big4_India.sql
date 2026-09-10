@@ -360,11 +360,17 @@ FROM Technologies
 ORDER BY Popularity;
 
 -- Type C — Multi-column sorting
+
 -- 11. Sort Employees by Department ascending, then Salary descending within each department.
+
 -- 12. Sort Clients by Industry ascending, then ContractValue descending.
+
 -- 13. Sort Projects by Status ascending, then Budget descending.
+
 -- 14. Sort Company_Financials by Company ascending, then Year descending.
+
 -- 15. Sort Offices by Country ascending, then City ascending.
+
 
 -- Type D — String functions
 -- 16. Convert all Company names in Clients to uppercase using UPPER().
