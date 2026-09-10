@@ -369,7 +369,9 @@ ORDER BY Department ASC, Salary DESC;
 
 -- 12. Sort Clients by Industry ascending, then ContractValue descending.
 
-
+SELECT *
+FROM Clients
+ORDER BY Industry ASC, ContractValue DESC;
 
 -- 13. Sort Projects by Status ascending, then Budget descending.
 
