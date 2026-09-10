@@ -387,7 +387,9 @@ ORDER BY Company, [Year] DESC;
 
 -- 15. Sort Offices by Country ascending, then City ascending.
 
-
+SELECT *
+FROM Office_Locations
+ORDER BY Country ASC, City DESC;
 
 -- Type D — String functions
 -- 16. Convert all Company names in Clients to uppercase using UPPER().
