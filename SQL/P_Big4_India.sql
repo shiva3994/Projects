@@ -432,13 +432,18 @@ FROM Office_Locations;
 -- 1. Join Projects and Clients on the shared Company column
 
 SELECT *
-FROM Projects P
+FROM Projects p
 
-JOIN Clients C
+JOIN Clients c
 ON p.Client_ID = c.Client_ID;
 
 -- 2. Join Employees and Projects on Employee_ID
 
+SELECT *
+FROM Employees e
+
+JOIN Projects p
+ON p.Employee_ID = e.Employee_ID;
 
 -- 3. Join Financials and Locations on Company
 
