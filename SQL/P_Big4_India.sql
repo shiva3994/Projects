@@ -447,6 +447,11 @@ ON p.Employee_ID = e.Employee_ID;
 
 -- 3. Join Financials and Locations on Company
 
+SELECT *
+FROM Company_Financials cf
+
+JOIN Office_Locations ol
+ON cf.Company = ol.Company;
 
 -- 4. Join Projects and Technologies on Project_ID
 
