@@ -455,6 +455,11 @@ ON cf.Company = ol.Company;
 
 -- 4. Join Projects and Technologies on Project_ID
 
+SELECT *
+FROM Projects p
+
+JOIN Technologies t
+ON p.Project_ID = t.Project_ID;
 
 -- 5. Join Clients and Financials on Company
 
