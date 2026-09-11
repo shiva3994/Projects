@@ -463,6 +463,11 @@ ON p.Project_ID = t.Project_ID;
 
 -- 5. Join Clients and Financials on Company
 
+SELECT *
+FROM Clients c
+
+JOIN Company_Financials cf
+ON c.Company = cf.Company;
 
 -- Type B — JOIN + WHERE filter
 
