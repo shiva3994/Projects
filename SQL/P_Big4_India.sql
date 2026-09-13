@@ -519,6 +519,12 @@ GROUP BY c.Industry;
 
 -- 12. Join Projects and Employees, then group by Department and count the associated projects.
 
+SELECT 
+	e.Department, 
+	COUNT(p.Project_ID) AS Num_of_projects
+FROM Projects p
+JOIN Employees e ON p.Employee_ID = e.Employee_ID
+GROUP BY e.Department;
 
 -- 13. Join Office_Locations and Company_Financials, then group by Country and calculate the average Revenue.
 
