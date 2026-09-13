@@ -508,34 +508,45 @@ WHERE Budget > '5000000';
 
 -- Type C — JOIN + aggregate
 
--- 11. Group by industry and calculate total budget sum
+-- 11. Join Projects and Clients, then group by Industry and calculate the total Budget sum.
+
+SELECT 
+	c.Industry,
+	SUM(p.Budget) AS Total_budget	
+FROM Clients c
+JOIN Projects p ON c.Client_ID = p.Client_ID
+GROUP BY c.Industry;
+
+-- 12. Join Projects and Employees, then group by Department and count the associated projects.
 
 
--- 12. Group by department and count associated projects
+-- 13. Join Office_Locations and Company_Financials, then group by Country and calculate the average Revenue.
 
 
--- 13. Group by country and calculate average revenue
+-- 14. Join Technologies and Projects, then group by project Status and calculate the average Popularity.
 
 
--- 14. Group by project status and calculate average popularity
-
-
--- 15. Group by client country and calculate average budget
+-- 15. Join Projects and Clients, then group by client Country and calculate the average Budget.
 
 
 -- Type D — LEFT JOIN (finding unmatched rows)
 
 
--- 16. Find clients where the matching project ID is missing
+-- 16. Left-join Clients with Projects on Client_ID,
+--     then find clients where the matching Project_ID is missing
 
 
--- 17. Find employees where the matching project assignment is missing
+-- 17. Left-join Employees with Projects on Employee_ID,
+--     then find employees where the matching project assignment is missing
 
 
--- 18. Find financial records where the matching office location is missing
+-- 18. Left-join Company_Financials with Office_Locations on Company (deduplicated),
+--     then find financial records where the matching office location is missing
 
 
--- 19. Find technologies where the matching project is missing
+-- 19. Left-join Technologies with Projects on Project_ID,
+--     then find technologies where the matching project is missing
 
 
--- 20. Find office locations where the matching financial record is missing
+-- 20. Left-join Office_Locations with Company_Financials on Company (deduplicated),
+--     then find office locations where the matching financial record is missing
