@@ -473,11 +473,15 @@ ON c.Company = cf.Company;
 
 -- 6. Filter the joined tables for the Retail industry
 
-
+SELECT *
+FROM Clients
+WHERE Industry = 'Retail';
 
 -- 7. Filter the joined tables for In Progress projects
 
-
+SELECT *
+FROM Projects
+WHERE Status = 'In Progress';
 
 -- 8. Filter the joined tables for offices in India
 
