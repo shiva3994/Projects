@@ -474,16 +474,21 @@ ON c.Company = cf.Company;
 -- 6. Filter the joined tables for the Retail industry
 
 
+
 -- 7. Filter the joined tables for In Progress projects
+
 
 
 -- 8. Filter the joined tables for offices in India
 
 
+
 -- 9. Filter the joined tables for Azure technology
 
 
+
 -- 10. Filter the joined tables for budgets over 5,000,000
+
 
 
 -- Type C — JOIN + aggregate
