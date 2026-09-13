@@ -471,29 +471,40 @@ ON c.Company = cf.Company;
 
 -- Type B — JOIN + WHERE filter
 
--- 6. Filter the joined tables for the Retail industry
+-- 6. Join Projects and Clients, then filter to only clients in the Retail industry.
 
-SELECT *
-FROM Clients
+SELECT p.*, c.Industry
+FROM Projects p
+JOIN Clients c ON p.Client_ID = c.Client_ID
 WHERE Industry = 'Retail';
 
--- 7. Filter the joined tables for In Progress projects
+-- 7. Join Projects and Clients, then filter to only In Progress projects.
 
-SELECT *
-FROM Projects
+SELECT p.*, c.Industry, c.Country
+FROM Projects p
+JOIN Clients c ON p.Client_ID = c.Client_ID
 WHERE Status = 'In Progress';
 
--- 8. Filter the joined tables for offices in India
+-- 8. Join Office_Locations and Company_Financials, then filter to only offices in India.
 
+SELECT o.*
+FROM Office_Locations o
+JOIN Company_Financials cf ON o.Company = cf.Company
+WHERE o.Country = 'India';
 
+-- 9. Join Projects and Technologies, then filter to only Azure technology entries.
 
--- 9. Filter the joined tables for Azure technology
+SELECT p.*, t.Technology
+FROM Projects p
+JOIN Technologies t ON t.Project_ID = p.Project_ID
+WHERE t.Technology = 'Azure';
 
+-- 10. Join Projects and Clients, then filter to only projects with Budget > 5,000,000.
 
-
--- 10. Filter the joined tables for budgets over 5,000,000
-
-
+SELECT c.*, p.Budget
+FROM Projects p
+JOIN Clients c ON p.Client_ID = c.Client_ID
+WHERE Budget > '5000000';
 
 -- Type C — JOIN + aggregate
 
@@ -513,6 +524,7 @@ WHERE Status = 'In Progress';
 
 
 -- Type D — LEFT JOIN (finding unmatched rows)
+
 
 -- 16. Find clients where the matching project ID is missing
 
