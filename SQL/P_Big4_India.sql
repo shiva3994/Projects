@@ -528,6 +528,25 @@ GROUP BY e.Department;
 
 -- 13. Join Office_Locations and Company_Financials, then group by Country and calculate the average Revenue.
 
+SELECT 
+	ol.Country,
+	AVG(cf.Revenue) AS avg_revenue
+FROM Office_Locations ol
+JOIN Company_Financials cf ON ol.Company = cf.Company
+GROUP BY ol.Country;
+
+--
+
+SELECT 
+    ol.Country,
+    AVG(cf.avg_revenue) AS avg_revenue
+FROM Office_Locations ol
+JOIN (
+    SELECT Company, AVG(Revenue) AS avg_revenue
+    FROM Company_Financials
+    GROUP BY Company
+) cf ON ol.Company = cf.Company
+GROUP BY ol.Country;
 
 -- 14. Join Technologies and Projects, then group by project Status and calculate the average Popularity.
 
