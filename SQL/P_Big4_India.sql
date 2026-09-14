@@ -611,6 +611,12 @@ WHERE OL.Office_ID IS NULL;
 -- 19. Left-join Technologies with Projects on Project_ID,
 --     then find technologies where the matching project is missing
 
+SELECT
+    T.*,
+    P.Project_ID
+FROM Technologies T
+LEFT JOIN Projects P ON T.Project_ID = P.Project_ID
+WHERE P.Project_ID IS NULL;
 
 -- 20. Left-join Office_Locations with Company_Financials on Company (deduplicated),
 --     then find office locations where the matching financial record is missing
