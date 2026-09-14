@@ -559,6 +559,13 @@ GROUP BY p.Status;
 
 -- 15. Join Projects and Clients, then group by client Country and calculate the average Budget.
 
+SELECT
+	c.Country,
+	AVG(p.Budget) AS avg_budget
+FROM Projects p
+JOIN Clients c ON p.Client_ID = c.Client_ID
+GROUP BY c.Country;
+
 
 -- Type D — LEFT JOIN (finding unmatched rows)
 
