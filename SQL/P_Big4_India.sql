@@ -550,6 +550,12 @@ GROUP BY ol.Country;
 
 -- 14. Join Technologies and Projects, then group by project Status and calculate the average Popularity.
 
+SELECT
+	AVG(t.Popularity) as avg_popularity,
+	p.Status
+FROM Technologies t
+JOIN Projects p ON t.Project_ID = p.Project_ID
+GROUP BY p.Status;
 
 -- 15. Join Projects and Clients, then group by client Country and calculate the average Budget.
 
