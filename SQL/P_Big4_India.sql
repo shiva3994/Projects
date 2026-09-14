@@ -621,10 +621,16 @@ WHERE P.Project_ID IS NULL;
 -- 20. Left-join Office_Locations with Company_Financials on Company (deduplicated),
 --     then find office locations where the matching financial record is missing
 
+SELECT
+	CF.*
+FROM Company_Financials CF
+LEFT JOIN (
+    SELECT DISTINCT Company
+    FROM Office_Locations
+) OL ON CF.Company = OL.Company
+WHERE OL.Company IS NULL;
 
--- ============================================================================
 -- DAY 5 — Subqueries & HAVING / Apply & Deeper GroupBy
--- ============================================================================
 
 -- ----------------------------------------------------------------------------
 -- Type A — Subquery in WHERE
