@@ -569,7 +569,6 @@ GROUP BY c.Country;
 
 -- Type D — LEFT JOIN (finding unmatched rows)
 
-
 -- 16. Left-join Clients with Projects on Client_ID,
 --     then find clients where the matching Project_ID is missing
 
