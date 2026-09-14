@@ -572,10 +572,31 @@ GROUP BY c.Country;
 -- 16. Left-join Clients with Projects on Client_ID,
 --     then find clients where the matching Project_ID is missing
 
+SELECT
+	C.*,
+	P.Project_ID
+FROM Clients C
+LEFT JOIN Projects P ON C.Client_ID = P.Client_ID
+WHERE P.Project_ID IS NULL
 
 -- 17. Left-join Employees with Projects on Employee_ID,
 --     then find employees where the matching project assignment is missing
 
+SELECT
+	E.*,
+	P.Project_ID
+FROM Employees E
+LEFT JOIN Projects P ON E.Employee_ID = P.Employee_ID
+WHERE P.Project_ID IS NULL;
+
+-- Alternative Approach (NOT IN)
+
+SELECT * 
+FROM Employees 
+WHERE Employee_ID NOT IN (
+    SELECT Employee_ID 
+    FROM Projects
+);
 
 -- 18. Left-join Company_Financials with Office_Locations on Company (deduplicated),
 --     then find financial records where the matching office location is missing
