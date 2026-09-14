@@ -630,13 +630,13 @@ LEFT JOIN (
 ) OL ON CF.Company = OL.Company
 WHERE OL.Company IS NULL;
 
+
 -- DAY 5 — Subqueries & HAVING / Apply & Deeper GroupBy
 
--- ----------------------------------------------------------------------------
 -- Type A — Subquery in WHERE
--- ----------------------------------------------------------------------------
 
 -- 1. Find employees whose Salary is above the overall average salary.
+
 
 
 -- 2. Find clients whose ContractValue is above the overall average contract value.
@@ -651,9 +651,8 @@ WHERE OL.Company IS NULL;
 -- 5. Find technologies where Popularity is above the overall average popularity.
 
 
--- ----------------------------------------------------------------------------
 -- Type B — HAVING (filtering grouped results)
--- ----------------------------------------------------------------------------
+
 
 -- 6. Find departments where average Salary exceeds 60000.
 
@@ -670,9 +669,8 @@ WHERE OL.Company IS NULL;
 -- 10. Find technologies where average Popularity exceeds 50.
 
 
--- ----------------------------------------------------------------------------
 -- Type C — CASE WHEN (categorization)
--- ----------------------------------------------------------------------------
+
 
 -- 11. Label each employee as 'Senior' if Age > 40, else 'Junior'.
 
@@ -689,9 +687,8 @@ WHERE OL.Company IS NULL;
 -- 15. Label each technology as 'Popular' if Popularity > 50, else 'Niche'.
 
 
--- ----------------------------------------------------------------------------
 -- Type D — Correlated subquery (per-group comparison)
--- ----------------------------------------------------------------------------
+
 
 -- 16. Find employees earning more than the average salary within their own department.
 
