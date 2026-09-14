@@ -601,6 +601,12 @@ WHERE Employee_ID NOT IN (
 -- 18. Left-join Company_Financials with Office_Locations on Company (deduplicated),
 --     then find financial records where the matching office location is missing
 
+SELECT
+	CF.*,
+	OL.Office_ID
+FROM Company_Financials CF
+LEFT JOIN Office_Locations OL ON CF.Employees = OL.Employees
+WHERE OL.Office_ID IS NULL;
 
 -- 19. Left-join Technologies with Projects on Project_ID,
 --     then find technologies where the matching project is missing
@@ -608,3 +614,83 @@ WHERE Employee_ID NOT IN (
 
 -- 20. Left-join Office_Locations with Company_Financials on Company (deduplicated),
 --     then find office locations where the matching financial record is missing
+
+
+-- ============================================================================
+-- DAY 5 — Subqueries & HAVING / Apply & Deeper GroupBy
+-- ============================================================================
+
+-- ----------------------------------------------------------------------------
+-- Type A — Subquery in WHERE
+-- ----------------------------------------------------------------------------
+
+-- 1. Find employees whose Salary is above the overall average salary.
+
+
+-- 2. Find clients whose ContractValue is above the overall average contract value.
+
+
+-- 3. Find projects whose Budget is above the overall average budget.
+
+
+-- 4. Find financial records where Revenue is above the overall average revenue.
+
+
+-- 5. Find technologies where Popularity is above the overall average popularity.
+
+
+-- ----------------------------------------------------------------------------
+-- Type B — HAVING (filtering grouped results)
+-- ----------------------------------------------------------------------------
+
+-- 6. Find departments where average Salary exceeds 60000.
+
+
+-- 7. Find industries where total ContractValue exceeds 100000000.
+
+
+-- 8. Find project statuses where average Budget exceeds 5000000.
+
+
+-- 9. Find companies where total Revenue exceeds 50000.
+
+
+-- 10. Find technologies where average Popularity exceeds 50.
+
+
+-- ----------------------------------------------------------------------------
+-- Type C — CASE WHEN (categorization)
+-- ----------------------------------------------------------------------------
+
+-- 11. Label each employee as 'Senior' if Age > 40, else 'Junior'.
+
+
+-- 12. Label each client as 'High Value' if ContractValue > 20000000, else 'Standard'.
+
+
+-- 13. Label each project as 'Big Budget' if Budget > 5000000, else 'Small Budget'.
+
+
+-- 14. Label each financial record as 'Profitable' if Profit > 0, else 'Loss'.
+
+
+-- 15. Label each technology as 'Popular' if Popularity > 50, else 'Niche'.
+
+
+-- ----------------------------------------------------------------------------
+-- Type D — Correlated subquery (per-group comparison)
+-- ----------------------------------------------------------------------------
+
+-- 16. Find employees earning more than the average salary within their own department.
+
+
+-- 17. Find clients whose ContractValue is above the average within their own industry.
+
+
+-- 18. Find projects whose Budget is above the average within their own status group.
+
+
+-- 19. Find financial records above the average revenue within their own company.
+
+
+-- 20. Find technologies above the average popularity within their own company.
