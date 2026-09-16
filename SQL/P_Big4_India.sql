@@ -717,6 +717,12 @@ HAVING AVG(Budget) > 5000000;
 
 -- 9. Find companies where total Revenue exceeds 50000.
 
+SELECT
+	Company,
+	SUM(Revenue) AS avg_revenue
+FROM Company_Financials
+GROUP BY Company
+HAVING SUM(Revenue) > 50000;
 
 -- 10. Find technologies where average Popularity exceeds 50.
 
