@@ -1,3 +1,4 @@
+
 USE P_Big4_India;
 
 -- DAY 1
@@ -637,7 +638,11 @@ WHERE OL.Company IS NULL;
 
 -- 1. Find employees whose Salary is above the overall average salary.
 
-
+SELECT *
+FROM Employees
+WHERE Salary > ( SELECT
+					AVG(Salary) AS avg_sal
+					FROM Employees);
 
 -- 2. Find clients whose ContractValue is above the overall average contract value.
 
