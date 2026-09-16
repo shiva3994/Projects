@@ -670,6 +670,11 @@ WHERE Revenue > (SELECT
 
 -- 5. Find technologies where Popularity is above the overall average popularity.
 
+SELECT *
+FROM Technologies
+WHERE Popularity > (SELECT
+						AVG(Popularity) AS avg_popularity
+						FROM Technologies);
 
 -- Type B — HAVING (filtering grouped results)
 
