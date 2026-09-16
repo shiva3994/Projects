@@ -662,6 +662,11 @@ WHERE Budget > (SELECT
 
 -- 4. Find financial records where Revenue is above the overall average revenue.
 
+SELECT *
+FROM Company_Financials
+WHERE Revenue > (SELECT
+					AVG(Revenue) AS avg_revenue
+					FROM Company_Financials);
 
 -- 5. Find technologies where Popularity is above the overall average popularity.
 
