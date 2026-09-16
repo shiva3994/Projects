@@ -688,11 +688,17 @@ WHERE Popularity > (
 
 -- Type B — HAVING (filtering grouped results)
 
-
 -- 6. Find departments where average Salary exceeds 60000.
 
+SELECT 
+	Department,
+	AVG(Salary) AS avg_dept_salary
+FROM Employees
+GROUP BY Department
+HAVING AVG(Salary) > 60000;
 
 -- 7. Find industries where total ContractValue exceeds 100000000.
+
 
 
 -- 8. Find project statuses where average Budget exceeds 5000000.
