@@ -646,6 +646,11 @@ WHERE Salary > ( SELECT
 
 -- 2. Find clients whose ContractValue is above the overall average contract value.
 
+SELECT *
+FROM Clients
+WHERE ContractValue > (SELECT
+							AVG(ContractValue) AS avg_contractvale
+							FROM Clients);
 
 -- 3. Find projects whose Budget is above the overall average budget.
 
