@@ -699,6 +699,12 @@ HAVING AVG(Salary) > 60000;
 
 -- 7. Find industries where total ContractValue exceeds 100000000.
 
+SELECT 
+    Industry, 
+    SUM(ContractValue) AS total_contract_value
+FROM Clients
+GROUP BY Industry
+HAVING SUM(ContractValue) > 100000000;
 
 
 -- 8. Find project statuses where average Budget exceeds 5000000.
