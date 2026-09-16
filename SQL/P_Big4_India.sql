@@ -676,6 +676,16 @@ WHERE Popularity > (SELECT
 						AVG(Popularity) AS avg_popularity
 						FROM Technologies);
 
+-- OR 
+
+SELECT *,
+       AVG(Popularity) OVER() AS overall_avg_popularity
+FROM Technologies
+WHERE Popularity > (
+    SELECT AVG(Popularity) 
+    FROM Technologies
+);
+
 -- Type B — HAVING (filtering grouped results)
 
 
