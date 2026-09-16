@@ -726,6 +726,12 @@ HAVING SUM(Revenue) > 50000;
 
 -- 10. Find technologies where average Popularity exceeds 50.
 
+SELECT
+	Technology,
+	AVG(Popularity) AS avg_popularity
+FROM Technologies
+GROUP BY Technology
+HAVING AVG(Popularity) > 50;
 
 -- Type C — CASE WHEN (categorization)
 
