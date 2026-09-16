@@ -706,9 +706,14 @@ FROM Clients
 GROUP BY Industry
 HAVING SUM(ContractValue) > 100000000;
 
-
 -- 8. Find project statuses where average Budget exceeds 5000000.
 
+SELECT
+	Status,
+	AVG(Budget) AS avg_budget
+FROM Projects
+GROUP BY Status
+HAVING AVG(Budget) > 5000000;
 
 -- 9. Find companies where total Revenue exceeds 50000.
 
