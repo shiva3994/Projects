@@ -654,6 +654,11 @@ WHERE ContractValue > (SELECT
 
 -- 3. Find projects whose Budget is above the overall average budget.
 
+SELECT *
+FROM Projects
+WHERE Budget > (SELECT
+					AVG(Budget) AS avg_budget
+					FROM Projects);
 
 -- 4. Find financial records where Revenue is above the overall average revenue.
 
