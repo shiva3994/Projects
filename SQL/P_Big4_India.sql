@@ -764,10 +764,17 @@ SELECT
 		WHEN Budget > 5000000 THEN 'Big Budget'
 		ELSE 'Small Budget'
 	END AS Projec_Budget
-FROM Projects P
+FROM Projects P;
 
 -- 14. Label each financial record as 'Profitable' if Profit > 0, else 'Loss'.
 
+SELECT
+	CF.*,
+	CASE
+		WHEN Profit > 0 THEN 'Profitable'
+		ELSE 'Loss'
+	END AS Financial_Status
+FROM Company_Financials CF;
 
 -- 15. Label each technology as 'Popular' if Popularity > 50, else 'Niche'.
 
