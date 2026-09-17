@@ -778,6 +778,13 @@ FROM Company_Financials CF;
 
 -- 15. Label each technology as 'Popular' if Popularity > 50, else 'Niche'.
 
+SELECT
+	T.*,
+	CASE 
+		WHEN Popularity > 50 THEN 'Popular'
+		ELSE 'Niche'
+	END AS Popularity_Status
+FROM Technologies T;
 
 -- Type D — Correlated subquery (per-group comparison)
 
