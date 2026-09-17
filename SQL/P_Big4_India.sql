@@ -744,10 +744,17 @@ SELECT
 		WHEN Age > 40 THEN 'SENIOR'
 		ELSE 'JUNIOR'
 	END AS Eemp_lable
-FROM Employees E
+FROM Employees E;
 
 -- 12. Label each client as 'High Value' if ContractValue > 20000000, else 'Standard'.
 
+SELECT
+	C.*,
+	CASE
+		WHEN ContractValue > 20000000 THEN 'High Value'
+		ELSE 'Standard'
+	END AS client_type
+FROM Clients C;
 
 -- 13. Label each project as 'Big Budget' if Budget > 5000000, else 'Small Budget'.
 
