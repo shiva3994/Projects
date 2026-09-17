@@ -738,6 +738,13 @@ HAVING AVG(Popularity) > 50;
 
 -- 11. Label each employee as 'Senior' if Age > 40, else 'Junior'.
 
+SELECT
+	E.*,
+	CASE
+		WHEN Age > 40 THEN 'SENIOR'
+		ELSE 'JUNIOR'
+	END AS Eemp_lable
+FROM Employees E
 
 -- 12. Label each client as 'High Value' if ContractValue > 20000000, else 'Standard'.
 
