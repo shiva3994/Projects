@@ -758,6 +758,13 @@ FROM Clients C;
 
 -- 13. Label each project as 'Big Budget' if Budget > 5000000, else 'Small Budget'.
 
+SELECT
+	P.*,
+	CASE
+		WHEN Budget > 5000000 THEN 'Big Budget'
+		ELSE 'Small Budget'
+	END AS Projec_Budget
+FROM Projects P
 
 -- 14. Label each financial record as 'Profitable' if Profit > 0, else 'Loss'.
 
