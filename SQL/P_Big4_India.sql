@@ -838,3 +838,10 @@ WHERE Revenue > (SELECT
 				 WHERE Company = CF.Company);
 
 -- 20. Find technologies above the average popularity within their own company.
+
+SELECT *
+FROM Technologies T
+WHERE Popularity > (SELECT
+						AVG(Popularity)
+					FROM Technologies
+					WHERE Company = T.Company);
