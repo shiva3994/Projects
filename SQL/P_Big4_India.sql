@@ -801,11 +801,24 @@ WHERE salary > (
 -- 17. Find clients whose ContractValue is above the average within their own industry.
 
 SELECT *
+--	AVG(C.ContractValue) AS Avg_ContractValue
 FROM Clients C
 WHERE ContractValue > (SELECT 
 							AVG(ContractValue)
 					   FROM Clients
 					   WHERE Industry = C.Industry);
+
+-- OR
+
+WITH RankedClients AS (
+    SELECT *,
+           AVG(ContractValue) OVER(PARTITION BY Industry) AS AvgContractValue
+    FROM Clients
+)
+SELECT * 
+FROM RankedClients
+WHERE ContractValue > AvgContractValue;
+
 
 -- 18. Find projects whose Budget is above the average within their own status group.
 
