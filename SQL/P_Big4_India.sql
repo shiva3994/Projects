@@ -819,9 +819,13 @@ SELECT *
 FROM RankedClients
 WHERE ContractValue > AvgContractValue;
 
-
 -- 18. Find projects whose Budget is above the average within their own status group.
 
+SELECT *
+FROM Projects P
+WHERE Budget > (SELECT
+					AVG(Budget) FROM Projects
+				WHERE Status = P.Status);
 
 -- 19. Find financial records above the average revenue within their own company.
 
