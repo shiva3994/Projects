@@ -788,8 +788,15 @@ FROM Technologies T;
 
 -- Type D — Correlated subquery (per-group comparison)
 
-
 -- 16. Find employees earning more than the average salary within their own department.
+
+SELECT * 
+FROM Employees e 
+WHERE salary > (
+    SELECT AVG(salary) 
+    FROM Employees 
+    WHERE Department = e.Department
+);
 
 
 -- 17. Find clients whose ContractValue is above the average within their own industry.
