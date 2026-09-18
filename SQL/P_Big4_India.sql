@@ -824,10 +824,17 @@ WHERE ContractValue > AvgContractValue;
 SELECT *
 FROM Projects P
 WHERE Budget > (SELECT
-					AVG(Budget) FROM Projects
+					AVG(Budget)
+				FROM Projects
 				WHERE Status = P.Status);
 
 -- 19. Find financial records above the average revenue within their own company.
 
+SELECT *
+FROM Company_Financials CF
+WHERE Revenue > (SELECT
+					AVG(Revenue)
+				 FROM Company_Financials
+				 WHERE Company = CF.Company);
 
 -- 20. Find technologies above the average popularity within their own company.
