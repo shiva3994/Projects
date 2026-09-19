@@ -911,6 +911,14 @@ WITH ranked_financials AS (
 )
 SELECT * FROM ranked_financials WHERE rn <= 2;
 
+-- 10. Top 2 most popular technologies for each Company
+WITH ranked_tech AS (
+    SELECT *,
+        ROW_NUMBER() OVER (PARTITION BY Company ORDER BY Popularity DESC) AS rn
+    FROM Technologies
+)
+SELECT * FROM ranked_tech WHERE rn <= 2;
+
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
