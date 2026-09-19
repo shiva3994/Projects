@@ -887,6 +887,14 @@ WITH ranked_employees AS (
 )
 SELECT * FROM ranked_employees WHERE rn <= 2;
 
+-- 7. Top 2 highest-value clients in each Industry
+WITH ranked_clients AS (
+    SELECT *,
+        ROW_NUMBER() OVER (PARTITION BY Industry ORDER BY ContractValue DESC) AS rn
+    FROM Clients
+)
+SELECT * FROM ranked_clients WHERE rn <= 2;
+
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
