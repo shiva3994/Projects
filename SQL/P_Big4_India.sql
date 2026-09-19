@@ -853,18 +853,13 @@ WHERE Popularity > (SELECT
 
 -- **Type A — RANK() / ROW_NUMBER() within a group**
 
--- 1. Rank employees within each `Department` by `Salary` descending.
--- 2. Rank clients within each `Industry` by `ContractValue` descending.
--- 3. Rank projects within each `Status` by `Budget` descending.
--- 4. Rank financial records within each `Company` by `Revenue` descending.
--- 5. Rank technologies within each `Company` by `Popularity` descending.
+-- 1. Rank employees within each Department by Salary descending
+SELECT *,
+    RANK() OVER (PARTITION BY Department ORDER BY Salary DESC) AS salary_rank
+FROM Employees;
 
--- **Type B — Top N per group (ROW_NUMBER + CTE)**
--- 6. Find the top 2 highest-paid employees in each `Department`.
--- 7. Find the top 2 highest-value clients in each `Industry`.
--- 8. Find the top 2 highest-budget projects in each `Status`.
--- 9. Find the top 2 highest-revenue records for each `Company`.
--- 10. Find the top 2 most popular technologies for each `Company`.
+-- 2. Rank clients within each Industry by ContractValue descending
+
 
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
