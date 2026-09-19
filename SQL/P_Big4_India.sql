@@ -863,6 +863,11 @@ SELECT *,
     RANK() OVER (PARTITION BY Industry ORDER BY ContractValue DESC) AS contractvalue_rank
 FROM Clients;
 
+-- 3. Rank projects within each Status by Budget descending
+SELECT *,
+    RANK() OVER (PARTITION BY Status ORDER BY Budget DESC) AS budget_rank
+FROM Projects;
+
 
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
