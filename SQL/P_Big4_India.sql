@@ -868,6 +868,11 @@ SELECT *,
     RANK() OVER (PARTITION BY Status ORDER BY Budget DESC) AS budget_rank
 FROM Projects;
 
+-- 4. Rank financial records within each Company by Revenue descending
+SELECT *,
+    RANK() OVER (PARTITION BY Company ORDER BY Revenue DESC) AS revenue_rank
+FROM Company_Financials;
+
 
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
