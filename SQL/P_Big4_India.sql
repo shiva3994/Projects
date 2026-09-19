@@ -903,6 +903,14 @@ WITH ranked_projects AS (
 )
 SELECT * FROM ranked_projects WHERE rn <= 2;
 
+-- 9. Top 2 highest-revenue records for each Company
+WITH ranked_financials AS (
+    SELECT *,
+        ROW_NUMBER() OVER (PARTITION BY Company ORDER BY Revenue DESC) AS rn
+    FROM Company_Financials
+)
+SELECT * FROM ranked_financials WHERE rn <= 2;
+
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
