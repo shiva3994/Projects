@@ -873,6 +873,11 @@ SELECT *,
     RANK() OVER (PARTITION BY Company ORDER BY Revenue DESC) AS revenue_rank
 FROM Company_Financials;
 
+-- 5. Rank technologies within each Company by Popularity descending
+SELECT *,
+    RANK() OVER (PARTITION BY Company ORDER BY Popularity DESC) AS popularity_rank
+FROM Technologies;
+
 
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
