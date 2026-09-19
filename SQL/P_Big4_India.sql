@@ -859,6 +859,9 @@ SELECT *,
 FROM Employees;
 
 -- 2. Rank clients within each Industry by ContractValue descending
+SELECT *,
+    RANK() OVER (PARTITION BY Industry ORDER BY ContractValue DESC) AS contractvalue_rank
+FROM Clients;
 
 
 -- **Type C — Running totals (SUM() OVER)**
