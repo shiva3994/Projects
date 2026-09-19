@@ -895,6 +895,14 @@ WITH ranked_clients AS (
 )
 SELECT * FROM ranked_clients WHERE rn <= 2;
 
+-- 8. Top 2 highest-budget projects in each Status
+WITH ranked_projects AS (
+    SELECT *,
+        ROW_NUMBER() OVER (PARTITION BY Status ORDER BY Budget DESC) AS rn
+    FROM Projects
+)
+SELECT * FROM ranked_projects WHERE rn <= 2;
+
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
