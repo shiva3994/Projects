@@ -879,6 +879,14 @@ SELECT *,
 FROM Technologies;
 
 
+-- 6. Top 2 highest-paid employees in each Department
+WITH ranked_employees AS (
+    SELECT *,
+        ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS rn
+    FROM Employees
+)
+SELECT * FROM ranked_employees WHERE rn <= 2;
+
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
