@@ -943,6 +943,23 @@ WITH ranked_tech AS (
 )
 SELECT * FROM ranked_tech WHERE rn <= 2;
 
+-- 10.1. Top 3 highest-salary employees in each Role
+
+
+
+-- 10.2. Top 2 highest-employee-count offices in each Country
+
+
+
+-- 10.3. Top 3 highest-budget projects in each Company
+
+
+
+-- 10.4. Top 2 highest-revenue financial records in each Year
+
+
+
+
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
