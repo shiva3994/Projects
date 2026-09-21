@@ -975,8 +975,13 @@ WHERE pb <= 3;
 
 -- 10.4. Top 2 highest-revenue financial records in each Year
 
+WITH financial_revenue AS (
+	SELECT *,
+		ROW_NUMBER() OVER (PARTITION BY Year ORDER BY Revenue DESC) AS fr
+	FROM Company_Financials)
 
-
+SELECT * FROM financial_revenue
+WHERE fr <= 2;
 
 -- **Type C — Running totals (SUM() OVER)**
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
