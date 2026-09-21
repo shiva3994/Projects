@@ -878,6 +878,14 @@ SELECT *,
     RANK() OVER (PARTITION BY Company ORDER BY Popularity DESC) AS popularity_rank
 FROM Technologies;
 
+-- 5.1. Rank technologies within each Technology name by Popularity descending
+
+-- 5.2. Rank financial records within each Year by Revenue descending
+
+-- 5.3. Rank offices within each State by Employees descending
+
+-- 5.4. Rank employees within each Company by Salary descending
+
 
 -- 6. Top 2 highest-paid employees in each Department
 WITH ranked_employees AS (
