@@ -1012,7 +1012,12 @@ FROM Projects;
 
 -- 14. Calculate a running total of `Revenue` per `Company`, ordered by `Year`.
 
-
+SELECT
+	Company,	
+	Revenue,
+	Year,
+	SUM(Revenue) OVER (PARTITION BY Company ORDER BY Year) AS Running_Revenue_ttl
+FROM Company_Financials;
 
 -- 15. Calculate a running total of `Popularity` ordered by `Technology_ID`.
 
