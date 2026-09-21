@@ -987,13 +987,32 @@ WHERE fr <= 2;
 
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
 
+SELECT 
+    Employee_ID,
+    Salary,
+    SUM(Salary) OVER (ORDER BY Employee_ID) AS Running_Total
+FROM 
+    Employees;
+
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
+
+SELECT
+	Client_ID,
+	ContractValue,
+	SUM(ContractValue) OVER (ORDER BY Client_ID) AS Running_Contract_ttl
+FROM Clients;
 
 -- 13. Calculate a running total of `Budget` ordered by `Project_ID`.
 
+SELECT
+
 -- 14. Calculate a running total of `Revenue` per `Company`, ordered by `Year`.
 
+
+
 -- 15. Calculate a running total of `Popularity` ordered by `Technology_ID`.
+
+
 
 -- **Type D — Percentage of group total (SUM() OVER PARTITION BY)**
 
