@@ -880,7 +880,13 @@ FROM Technologies;
 
 -- 5.1. Rank technologies within each Technology name by Popularity descending
 
+SELECT *,
+	RANK() OVER (PARTITION BY Technology ORDER BY Popularity DESC) AS popularity_rank
+FROM Technologies;
+
 -- 5.2. Rank financial records within each Year by Revenue descending
+
+
 
 -- 5.3. Rank offices within each State by Employees descending
 
