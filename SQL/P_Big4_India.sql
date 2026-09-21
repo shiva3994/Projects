@@ -984,15 +984,26 @@ SELECT * FROM financial_revenue
 WHERE fr <= 2;
 
 -- **Type C — Running totals (SUM() OVER)**
+
 -- 11. Calculate a running total of `Salary` ordered by `Employee_ID`.
+
 -- 12. Calculate a running total of `ContractValue` ordered by `Client_ID`.
+
 -- 13. Calculate a running total of `Budget` ordered by `Project_ID`.
+
 -- 14. Calculate a running total of `Revenue` per `Company`, ordered by `Year`.
+
 -- 15. Calculate a running total of `Popularity` ordered by `Technology_ID`.
 
 -- **Type D — Percentage of group total (SUM() OVER PARTITION BY)**
+
 -- 16. Show each employee's `Salary` as a percentage of their department's total salary.
+
 -- 17. Show each client's `ContractValue` as a percentage of their industry's total.
+
 -- 18. Show each project's `Budget` as a percentage of its status group's total.
+
 -- 19. Show each financial record's `Revenue` as a percentage of its company's total revenue.
+
 -- 20. Show each technology's `Popularity` as a percentage of its company's total popularity.
+
