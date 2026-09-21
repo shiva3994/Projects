@@ -1031,7 +1031,23 @@ FROM Technologies;
 
 -- 16. Show each employee's `Salary` as a percentage of their department's total salary.
 
+SELECT
+    Employee_ID,
+    Department,
+    Salary,
+    SUM(Salary) OVER (PARTITION BY Department) AS dept_total_salary,
+    Salary * 100.0 / SUM(Salary) OVER (PARTITION BY Department) AS pct_of_dept_total
+FROM Employees;
+
 -- 17. Show each client's `ContractValue` as a percentage of their industry's total.
+
+SELECT
+	Client_ID,
+	Industry,
+	ContractValue,
+	SUM(ContractValue) OVER (PARTITION BY Industry) AS industry_total,
+	ContractValue * 100.0/SUM(ContractValue) OVER (PARTITION BY Industry) AS pct_industry_total
+FROM Clients;
 
 -- 18. Show each project's `Budget` as a percentage of its status group's total.
 
