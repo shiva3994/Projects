@@ -1021,7 +1021,11 @@ FROM Company_Financials;
 
 -- 15. Calculate a running total of `Popularity` ordered by `Technology_ID`.
 
-
+SELECT
+	Technology_ID,
+	Technology,
+	SUM(Popularity) OVER (PARTITION BY Technology ORDER BY Technology_ID) AS Running_Popularity_ttl
+FROM Technologies;
 
 -- **Type D — Percentage of group total (SUM() OVER PARTITION BY)**
 
