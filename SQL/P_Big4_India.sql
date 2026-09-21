@@ -882,11 +882,14 @@ FROM Technologies;
 
 SELECT *,
 	RANK() OVER (PARTITION BY Technology ORDER BY Popularity DESC) AS popularity_rank
+	-- Groups rows by technology, sorts by highest popularity, and assigns a rank
 FROM Technologies;
 
 -- 5.2. Rank financial records within each Year by Revenue descending
 
-
+SELECT *,
+	RANK() OVER (PARTITION BY Year ORDER BY Revenue DESC) AS revenue_rank
+FROM Company_Financials;
 
 -- 5.3. Rank offices within each State by Employees descending
 
