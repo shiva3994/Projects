@@ -1005,6 +1005,10 @@ FROM Clients;
 -- 13. Calculate a running total of `Budget` ordered by `Project_ID`.
 
 SELECT
+	Project_ID,
+	Budget,
+	SUM(Budget) OVER (ORDER BY Project_ID) AS Running_Budget_ttl
+FROM Projects;
 
 -- 14. Calculate a running total of `Revenue` per `Company`, ordered by `Year`.
 
