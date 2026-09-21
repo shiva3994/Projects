@@ -899,6 +899,9 @@ FROM Office_Locations;
 
 -- 5.4. Rank employees within each Company by Salary descending
 
+SELECT *,
+	RANK() OVER (PARTITION BY Company ORDER BY Salary DESC) AS salary_rank
+FROM Employees;
 
 -- 6. Top 2 highest-paid employees in each Department
 WITH ranked_employees AS (
