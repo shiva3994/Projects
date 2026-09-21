@@ -945,7 +945,13 @@ SELECT * FROM ranked_tech WHERE rn <= 2;
 
 -- 10.1. Top 3 highest-salary employees in each Role
 
+WITH rank_role AS (
+	SELECT*,
+		ROW_NUMBER() OVER (PARTITION BY Role ORDER BY Salary DESC) AS rr
+	FROM Employees)
 
+SELECT * FROM rank_role
+WHERE rr <= 3;
 
 -- 10.2. Top 2 highest-employee-count offices in each Country
 
