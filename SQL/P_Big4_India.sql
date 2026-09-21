@@ -955,11 +955,23 @@ WHERE rr <= 3;
 
 -- 10.2. Top 2 highest-employee-count offices in each Country
 
+WITH emp_count AS (
+	SELECT *,
+		ROW_NUMBER() OVER (PARTITION BY Country ORDER BY Employees DESC) AS ec
+	FROM Office_Locations)
 
+SELECT * FROM emp_count
+WHERE ec <= 2;
 
 -- 10.3. Top 3 highest-budget projects in each Company
 
+WITH project_budget AS (
+	SELECT *,
+		ROW_NUMBER() OVER (PARTITION BY Company ORDER BY Budget DESC) AS pb
+	FROM Projects)
 
+SELECT * FROM project_budget
+WHERE pb <= 3;
 
 -- 10.4. Top 2 highest-revenue financial records in each Year
 
