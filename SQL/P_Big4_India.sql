@@ -893,6 +893,10 @@ FROM Company_Financials;
 
 -- 5.3. Rank offices within each State by Employees descending
 
+SELECT *,
+	RANK() OVER (PARTITION BY State ORDER BY Employees DESC) AS employee_rank
+FROM Office_Locations;
+
 -- 5.4. Rank employees within each Company by Salary descending
 
 
