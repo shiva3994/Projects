@@ -1120,7 +1120,18 @@ JOIN ttl_contractval TC ON C.Industry = TC.Industry;
 
 -- 3. Write a CTE that computes average Budget per Status, then join it back to Projects.
 
+WITH avg_status_budget AS (
+	SELECT
+		Status,
+		AVG(Budget) AS avg_budget
+	FROM Projects
+	GROUP BY Status)
 
+SELECT
+	p.*,
+	ASB.avg_budget
+FROM Projects p
+JOIN avg_status_budget ASB ON P.Status = ASB.Status;
 
 -- 4. Write a CTE that computes total Revenue per Company, then join it back to Company_Financials.
 
