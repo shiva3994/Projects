@@ -1078,3 +1078,69 @@ SELECT
 	SUM(Popularity) OVER (PARTITION BY Company) AS Popularity_total,
 	Popularity/100.0 * SUM(Popularity) OVER (PARTITION BY Company) AS pct_Popularity_total
 FROM Technologies;
+
+
+-- DAY 7 — CTEs & Dates / Cleaning, Dates & Visualization
+
+-- ### SQL
+
+-- Type A — CTEs (basic)
+-- 1. Write a CTE that computes average Salary per Department, then join it back to Employees
+--    to show each employee alongside their department's average.
+-- 2. Write a CTE that computes total ContractValue per Industry, then join it back to Clients.
+-- 3. Write a CTE that computes average Budget per Status, then join it back to Projects.
+-- 4. Write a CTE that computes total Revenue per Company, then join it back to Company_Financials.
+-- 5. Write a CTE that computes average Popularity per Company, then join it back to Technologies.
+
+-- Type B — CTE + filtering (finding above-average per group)
+-- 6. Using a CTE, find employees earning more than 20% above their department's average salary.
+-- 7. Using a CTE, find clients whose ContractValue is more than 20% above their industry's average.
+-- 8. Using a CTE, find projects whose Budget is more than 20% above their status group's average.
+-- 9. Using a CTE, find financial records more than 20% above their company's average revenue.
+-- 10. Using a CTE, find technologies more than 20% above their company's average popularity.
+
+-- Type C — Date functions (Employees.JoinDate)
+-- 11. Extract the YEAR from JoinDate for each employee.
+-- 12. Find all employees who joined in the year 2020.
+-- 13. Calculate each employee's tenure in years using DATEDIFF from JoinDate to today.
+-- 14. Find the earliest and latest JoinDate in the Employees table.
+-- 15. Count how many employees joined per year.
+
+-- Type D — Multi-concept combo (joins + aggregate + CASE)
+-- 16. Join Employees and Projects, then label each employee 'Overloaded' if assigned to more than 3 projects, else 'Normal'.
+-- 17. Join Clients and Projects, then find total Budget per client, labeling clients 'Key Account' if total exceeds 15000000.
+-- 18. Join Office_Locations and Company_Financials, then rank companies by Revenue within each Country.
+-- 19. Join Projects and Technologies, then find the most-used Technology per project Status.
+-- 20. Combine all of the above: for each Company, show total Revenue, employee count, and average project Budget in one query.
+
+
+-- ### Python
+
+-- Type A — Merge + groupby combo (CTE equivalent)
+-- 1. Compute average Salary per Department, then merge it back onto employees as a new column.
+-- 2. Compute total ContractValue per Industry, then merge it back onto clients.
+-- 3. Compute average Budget per Status, then merge it back onto projects.
+-- 4. Compute total Revenue per Company, then merge it back onto financials.
+-- 5. Compute average Popularity per Company, then merge it back onto technologies.
+
+-- Type B — Filtering with .transform() (above-average per group)
+-- 6. Find employees earning more than 20% above their department's average salary.
+-- 7. Find clients whose ContractValue is more than 20% above their industry's average.
+-- 8. Find projects whose Budget is more than 20% above their status group's average.
+-- 9. Find financial records more than 20% above their company's average revenue.
+-- 10. Find technologies more than 20% above their company's average popularity.
+
+-- Type C — Date handling (pd.to_datetime)
+-- 11. Convert JoinDate in employees to a proper datetime column.
+-- 12. Extract the year from JoinDate into a new column.
+-- 13. Calculate each employee's tenure in years (today minus JoinDate).
+-- 14. Find the earliest and latest JoinDate in the dataset.
+-- 15. Count how many employees joined per year using .dt.year.value_counts().
+
+-- Type D — Combo: cleaning + visualization
+-- 16. Check employees for any inconsistent Department spellings (e.g., using .unique()) and standardize casing.
+-- 17. Merge clients and projects, sum Budget per client, and plot a bar chart of the top 10 clients by total budget.
+-- 18. Plot a bar chart of average Salary per Department.
+-- 19. Plot a line chart of total Revenue per Year (across all companies) from financials.
+-- 20. Build one summary DataFrame combining, per Company: total Revenue, employee count, and average project Budget —
+--     then export it to CSV.
