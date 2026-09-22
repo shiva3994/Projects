@@ -1051,6 +1051,14 @@ FROM Clients;
 
 -- 18. Show each project's `Budget` as a percentage of its status group's total.
 
+SELECT
+	Project_ID,
+	Status,
+	Budget,
+	SUM(Budget) OVER (PARTITION BY Status) AS status_total,
+	Budget * 100.0/SUM(Budget) OVER (PARTITION BY Status) AS pct_status_total
+FROM Projects; 
+
 -- 19. Show each financial record's `Revenue` as a percentage of its company's total revenue.
 
 -- 20. Show each technology's `Popularity` as a percentage of its company's total popularity.
