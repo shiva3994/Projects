@@ -1150,6 +1150,18 @@ JOIN ttl_rev_con TRV ON CF.Company = TRV.Company;
 
 -- 5. Write a CTE that computes average Popularity per Company, then join it back to Technologies.
 
+WITH AVG_POP_COM AS (
+	SELECT
+		Company,
+		AVG(Popularity) AS AVG_POP
+	FROM Technologies
+	GROUP BY Company)
+
+SELECT
+	CF.*,
+	APC.AVG_POP
+FROM Company_Financials CF
+JOIN AVG_POP_COM APC ON CF.Company = APC.Company;
 
 
 -- Type B — CTE + filtering (finding above-average per group)
