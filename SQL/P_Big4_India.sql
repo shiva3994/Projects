@@ -1165,10 +1165,31 @@ JOIN AVG_POP_COM APC ON CF.Company = APC.Company;
 
 
 -- Type B — CTE + filtering (finding above-average per group)
+
 -- 6. Using a CTE, find employees earning more than 20% above their department's average salary.
+
+WITH DEPT_AVG_SAL AS (
+	SELECT
+		Department,
+		AVG(Salary) AS AVG_SAL
+	FROM Employees
+	GROUP BY Department)
+
+SELECT
+    E.*
+FROM Employees E
+JOIN DEPT_AVG_SAL D ON E.Department = D.Department
+WHERE E.Salary > D.AVG_SAL * 1.2; -- Think of 1.2 as 100% + 20% = 120%, written as a decimal (120% = 1.20).
+
 -- 7. Using a CTE, find clients whose ContractValue is more than 20% above their industry's average.
+
+
 -- 8. Using a CTE, find projects whose Budget is more than 20% above their status group's average.
+
+
 -- 9. Using a CTE, find financial records more than 20% above their company's average revenue.
+
+
 -- 10. Using a CTE, find technologies more than 20% above their company's average popularity.
 
 -- Type C — Date functions (Employees.JoinDate)
