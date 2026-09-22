@@ -1061,5 +1061,13 @@ FROM Projects;
 
 -- 19. Show each financial record's `Revenue` as a percentage of its company's total revenue.
 
+SELECT
+	Financial_ID,
+	Company,
+	Revenue,
+	SUM(Revenue) OVER (PARTITION BY Company) AS revenue_total,
+	Revenue/100.0 * SUM(Revenue) OVER (PARTITION BY Company) AS pct_revenue_total
+FROM Company_Financials;
+
 -- 20. Show each technology's `Popularity` as a percentage of its company's total popularity.
 
