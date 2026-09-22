@@ -1085,12 +1085,49 @@ FROM Technologies;
 -- ### SQL
 
 -- Type A — CTEs (basic)
+
 -- 1. Write a CTE that computes average Salary per Department, then join it back to Employees
 --    to show each employee alongside their department's average.
+
+WITH dept_avg AS (
+    SELECT
+        Department,
+        AVG(Salary) AS avg_dept_salary
+    FROM Employees
+    GROUP BY Department
+)
+
+SELECT
+    e.*,
+    d.avg_dept_salary
+FROM Employees e
+JOIN dept_avg d ON e.Department = d.Department;
+
 -- 2. Write a CTE that computes total ContractValue per Industry, then join it back to Clients.
+
+WITH ttl_contractval AS (
+		SELECT
+			Industry,
+			SUM(ContractValue) AS ttl_contractval_industry
+		FROM Clients
+		GROUP BY Industry)
+
+SELECT
+	C.*,
+	TC.ttl_contractval_industry
+FROM Clients C
+JOIN ttl_contractval TC ON C.Industry = TC.Industry;
+
 -- 3. Write a CTE that computes average Budget per Status, then join it back to Projects.
+
+
+
 -- 4. Write a CTE that computes total Revenue per Company, then join it back to Company_Financials.
+
+
 -- 5. Write a CTE that computes average Popularity per Company, then join it back to Technologies.
+
+
 
 -- Type B — CTE + filtering (finding above-average per group)
 -- 6. Using a CTE, find employees earning more than 20% above their department's average salary.
