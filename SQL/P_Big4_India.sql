@@ -1135,6 +1135,18 @@ JOIN avg_status_budget ASB ON P.Status = ASB.Status;
 
 -- 4. Write a CTE that computes total Revenue per Company, then join it back to Company_Financials.
 
+WITH ttl_rev_con AS (
+	SELECT
+		Company,
+		SUM(Revenue) AS ttl_rev
+	FROM Company_Financials
+	GROUP BY Company)
+
+SELECT
+	CF.*,
+	TRV.ttl_rev
+FROM Company_Financials CF
+JOIN ttl_rev_con TRV ON CF.Company = TRV.Company;
 
 -- 5. Write a CTE that computes average Popularity per Company, then join it back to Technologies.
 
