@@ -1071,3 +1071,10 @@ FROM Company_Financials;
 
 -- 20. Show each technology's `Popularity` as a percentage of its company's total popularity.
 
+SELECT
+	Technology_ID,
+	Company,
+	Popularity,
+	SUM(Popularity) OVER (PARTITION BY Company) AS Popularity_total,
+	Popularity/100.0 * SUM(Popularity) OVER (PARTITION BY Company) AS pct_Popularity_total
+FROM Technologies;
