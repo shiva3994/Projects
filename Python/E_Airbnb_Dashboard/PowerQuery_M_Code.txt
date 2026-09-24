@@ -1,0 +1,140 @@
+POWER QUERY M CODE — Airbnb Antwerp Dashboard
+================================================
+Paste each block into Power BI Desktop:
+Home > Transform Data > select/create the query > Home > Advanced Editor
+(replace the existing M code with the block below, adjusting the file path in Source)
+
+
+--------------------------------------------------
+1) CALENDAR  ->  Calendar_Clean
+--------------------------------------------------
+let
+    Source = Csv.Document(File.Contents("C:\YourPath\calendar.csv"),
+        [Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    ChangedTypes = Table.TransformColumnTypes(PromotedHeaders,{
+        {"calender_id", Int64.Type}, {"listing_id", Int64.Type},
+        {"date", type date}, {"minimum_nights", Int64.Type}, {"maximum_nights", Int64.Type}
+    }),
+    // available: 0/1 -> TRUE/FALSE (handles t/f text too, if source format changes)
+    FixAvailable = Table.TransformColumns(ChangedTypes, {
+        {"available", each if _ = 1 or _ = "t" or _ = "true" or _ = true then true else false, type logical}
+    }),
+    // price / adjusted_price: strip $ and commas, convert to Decimal
+    CleanPrice = Table.TransformColumns(FixAvailable, {
+        {"price", each try Number.FromText(Text.Remove(Text.From(_), {"$", ","})) otherwise null, type nullable number},
+        {"adjusted_price", each try Number.FromText(Text.Remove(Text.From(_), {"$", ","})) otherwise null, type nullable number}
+    }),
+    // filter out rows where price is null or zero
+    FilteredRows = Table.SelectRows(CleanPrice, each [price] <> null and [price] > 0)
+in
+    FilteredRows
+
+
+--------------------------------------------------
+2) HOSTS  ->  Hosts_Clean
+--------------------------------------------------
+let
+    Source = Csv.Document(File.Contents("C:\YourPath\hosts.csv"),
+        [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    ChangedTypes = Table.TransformColumnTypes(PromotedHeaders,{
+        {"host_id", Int64.Type}, {"host_since", type date}
+    }),
+    // HostAge in years (recalculates on every refresh)
+    AddHostAge = Table.AddColumn(ChangedTypes, "HostAgeYears", each
+        Number.Round(Duration.Days(DateTime.LocalNow() - DateTime.From([host_since])) / 365.25, 1), type number),
+    // bio flags
+    AddHasBio = Table.AddColumn(AddHostAge, "HasBio", each [host_about] <> null and Text.Trim([host_about]) <> "", type logical),
+    AddBioLength = Table.AddColumn(AddHasBio, "BioLength", each
+        if [host_about] = null then 0 else List.Count(Text.Split(Text.Trim([host_about]), " ")), Int64.Type)
+in
+    AddBioLength
+
+
+--------------------------------------------------
+3) LISTINGS  ->  Listings_Clean
+--------------------------------------------------
+let
+    Source = Csv.Document(File.Contents("C:\YourPath\listings.csv"),
+        [Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    RenamedTypo = Table.RenameColumns(PromotedHeaders, {{"accomodates", "accommodates"}}),
+    ChangedTypes = Table.TransformColumnTypes(RenamedTypo,{
+        {"listing_id", Int64.Type}, {"latitude", type number}, {"longitude", type number},
+        {"accommodates", Int64.Type}, {"host_id", Int64.Type}
+    }),
+    // bedrooms / beds -> Whole Number, fill nulls with column median
+    BedroomsNum = Table.TransformColumnTypes(ChangedTypes, {{"bedrooms", Int64.Type}, {"beds", Int64.Type}}),
+    BedroomsMedian = List.Median(List.RemoveNulls(BedroomsNum[bedrooms])),
+    BedsMedian = List.Median(List.RemoveNulls(BedroomsNum[beds])),
+    FillBedrooms = Table.ReplaceValue(BedroomsNum, null, BedroomsMedian, Replacer.ReplaceValue, {"bedrooms"}),
+    FillBeds = Table.ReplaceValue(FillBedrooms, null, BedsMedian, Replacer.ReplaceValue, {"beds"}),
+    // bedroom bucket
+    AddBucket = Table.AddColumn(FillBeds, "BedroomBucket", each
+        if [bedrooms] <= 1 then "1 BR" else if [bedrooms] <= 3 then "2-3 BR" else "4+ BR", type text),
+    // bathrooms_text -> numeric bathrooms (M Power Query example, per Data Description)
+    AddBathrooms = Table.AddColumn(AddBucket, "bathrooms", each
+        try Number.FromText(Text.BeforeDelimiter([bathrooms_text], " ")) otherwise
+            (if Text.Contains([bathrooms_text], "Half", Comparer.OrdinalIgnoreCase) then 0.5 else null), type nullable number),
+    AddSharedFlag = Table.AddColumn(AddBathrooms, "bathrooms_shared", each
+        Text.Contains([bathrooms_text], "shared", Comparer.OrdinalIgnoreCase), type logical),
+    // trim text fields
+    TrimText = Table.TransformColumns(AddSharedFlag, {
+        {"property_type", Text.Trim}, {"room_type", Text.Trim}
+    }),
+    // amenities -> parse JSON array, count, then binary flags for key amenities
+    AddAmenityCount = Table.AddColumn(TrimText, "AmenityCount", each
+        try List.Count(Json.Document([amenities])) otherwise 0, Int64.Type),
+    AddWifi = Table.AddColumn(AddAmenityCount, "Amenity_Wifi", each
+        try List.AnyTrue(List.Transform(Json.Document([amenities]), each Text.Contains(_, "Wifi", Comparer.OrdinalIgnoreCase))) otherwise false, type logical),
+    AddKitchen = Table.AddColumn(AddWifi, "Amenity_Kitchen", each
+        try List.AnyTrue(List.Transform(Json.Document([amenities]), each Text.Contains(_, "Kitchen", Comparer.OrdinalIgnoreCase))) otherwise false, type logical),
+    AddHeating = Table.AddColumn(AddKitchen, "Amenity_Heating", each
+        try List.AnyTrue(List.Transform(Json.Document([amenities]), each Text.Contains(_, "Heating", Comparer.OrdinalIgnoreCase))) otherwise false, type logical),
+    // filter 0,0 lat/long outliers
+    FilteredCoords = Table.SelectRows(AddHeating, each not ([latitude] = 0 and [longitude] = 0))
+in
+    FilteredCoords
+
+// OPTIONAL separate long-format Amenities_Lookup table (Reference Listings_Clean, then):
+// let
+//     Source = Listings_Clean,
+//     Keep = Table.SelectColumns(Source, {"listing_id", "amenities"}),
+//     Parsed = Table.AddColumn(Keep, "amenity_list", each try Json.Document([amenities]) otherwise {}),
+//     Expanded = Table.ExpandListColumn(Parsed, "amenity_list"),
+//     Final = Table.SelectColumns(Expanded, {"listing_id", "amenity_list"})
+// in
+//     Final
+
+
+--------------------------------------------------
+4) REVIEWS  ->  Reviews_Clean
+--------------------------------------------------
+let
+    Source = Csv.Document(File.Contents("C:\YourPath\reviews.csv"),
+        [Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    ChangedTypes = Table.TransformColumnTypes(PromotedHeaders,{
+        {"review_id", Int64.Type}, {"listing_id", Int64.Type},
+        {"date", type date}, {"reviewer_id", Int64.Type}
+    }),
+    FillComments = Table.ReplaceValue(ChangedTypes, null, "", Replacer.ReplaceValue, {"comments"}),
+    AddReviewLength = Table.AddColumn(FillComments, "ReviewLength", each
+        List.Count(Text.Split(Text.Trim([comments]), " ")), Int64.Type)
+in
+    AddReviewLength
+
+
+--------------------------------------------------
+NOTES
+--------------------------------------------------
+- Update the File.Contents(...) path in each Source step to wherever your CSVs live
+  (or point them at a SharePoint/OneDrive folder for scheduled refresh).
+- The "accomodates" -> "accommodates" rename in Listings fixes a typo in the source file.
+- Amenity_* flags shown for Wifi/Kitchen/Heating only — duplicate the AddWifi-style step
+  for any other amenities you want as slicers (Washer, Free parking, Air conditioning, etc.)
+- After loading all four queries, go to Model view and build relationships:
+    Listings[listing_id]  1 --- * Calendar[listing_id]
+    Hosts[host_id]        1 --- * Listings[host_id]
+    Listings[listing_id]  1 --- * Reviews[listing_id]
