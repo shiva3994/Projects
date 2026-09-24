@@ -1183,6 +1183,15 @@ WHERE E.Salary > D.AVG_SAL * 1.2; -- Think of 1.2 as 100% + 20% = 120%, written 
 
 -- 7. Using a CTE, find clients whose ContractValue is more than 20% above their industry's average.
 
+WITH status_avg AS (
+    SELECT Status, AVG(Budget) AS avg_budget
+    FROM Projects
+    GROUP BY Status
+)
+SELECT p.*
+FROM Projects p
+JOIN status_avg sa ON p.Status = sa.Status
+WHERE p.Budget > sa.avg_budget * 1.2;
 
 -- 8. Using a CTE, find projects whose Budget is more than 20% above their status group's average.
 
@@ -1205,35 +1214,3 @@ WHERE E.Salary > D.AVG_SAL * 1.2; -- Think of 1.2 as 100% + 20% = 120%, written 
 -- 18. Join Office_Locations and Company_Financials, then rank companies by Revenue within each Country.
 -- 19. Join Projects and Technologies, then find the most-used Technology per project Status.
 -- 20. Combine all of the above: for each Company, show total Revenue, employee count, and average project Budget in one query.
-
-
--- ### Python
-
--- Type A — Merge + groupby combo (CTE equivalent)
--- 1. Compute average Salary per Department, then merge it back onto employees as a new column.
--- 2. Compute total ContractValue per Industry, then merge it back onto clients.
--- 3. Compute average Budget per Status, then merge it back onto projects.
--- 4. Compute total Revenue per Company, then merge it back onto financials.
--- 5. Compute average Popularity per Company, then merge it back onto technologies.
-
--- Type B — Filtering with .transform() (above-average per group)
--- 6. Find employees earning more than 20% above their department's average salary.
--- 7. Find clients whose ContractValue is more than 20% above their industry's average.
--- 8. Find projects whose Budget is more than 20% above their status group's average.
--- 9. Find financial records more than 20% above their company's average revenue.
--- 10. Find technologies more than 20% above their company's average popularity.
-
--- Type C — Date handling (pd.to_datetime)
--- 11. Convert JoinDate in employees to a proper datetime column.
--- 12. Extract the year from JoinDate into a new column.
--- 13. Calculate each employee's tenure in years (today minus JoinDate).
--- 14. Find the earliest and latest JoinDate in the dataset.
--- 15. Count how many employees joined per year using .dt.year.value_counts().
-
--- Type D — Combo: cleaning + visualization
--- 16. Check employees for any inconsistent Department spellings (e.g., using .unique()) and standardize casing.
--- 17. Merge clients and projects, sum Budget per client, and plot a bar chart of the top 10 clients by total budget.
--- 18. Plot a bar chart of average Salary per Department.
--- 19. Plot a line chart of total Revenue per Year (across all companies) from financials.
--- 20. Build one summary DataFrame combining, per Company: total Revenue, employee count, and average project Budget —
---     then export it to CSV.
