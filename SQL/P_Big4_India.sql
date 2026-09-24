@@ -1230,15 +1230,37 @@ JOIN tech_avg ta ON t.Company = ta.Company
 WHERE t.Popularity > ta.avg_popularity * 1.2;
 
 -- Type C — Date functions (Employees.JoinDate)
--- 11. Extract the YEAR from JoinDate for each employee.
--- 12. Find all employees who joined in the year 2020.
--- 13. Calculate each employee's tenure in years using DATEDIFF from JoinDate to today.
--- 14. Find the earliest and latest JoinDate in the Employees table.
--- 15. Count how many employees joined per year.
 
--- Type D — Multi-concept combo (joins + aggregate + CASE)
--- 16. Join Employees and Projects, then label each employee 'Overloaded' if assigned to more than 3 projects, else 'Normal'.
--- 17. Join Clients and Projects, then find total Budget per client, labeling clients 'Key Account' if total exceeds 15000000.
--- 18. Join Office_Locations and Company_Financials, then rank companies by Revenue within each Country.
--- 19. Join Projects and Technologies, then find the most-used Technology per project Status.
--- 20. Combine all of the above: for each Company, show total Revenue, employee count, and average project Budget in one query.
+-- 11. Extract the YEAR from JoinDate
+SELECT
+    Employee_ID,
+    JoinDate,
+    YEAR(CAST(JoinDate AS DATE)) AS JoinYear
+FROM Employees;
+
+-- 12. Employees who joined in 2020
+SELECT *
+FROM Employees
+WHERE YEAR(CAST(JoinDate AS DATE)) = 2020;
+
+-- 13. Tenure in years (JoinDate to today)
+SELECT
+    Employee_ID,
+    JoinDate,
+    DATEDIFF(YEAR, CAST(JoinDate AS DATE), GETDATE()) AS TenureYears
+FROM Employees;
+
+-- 14. Earliest and latest JoinDate
+SELECT
+    MIN(CAST(JoinDate AS DATE)) AS EarliestJoin,
+    MAX(CAST(JoinDate AS DATE)) AS LatestJoin
+FROM Employees;
+
+-- 15. Count of employees per join year
+SELECT
+    YEAR(CAST(JoinDate AS DATE)) AS JoinYear,
+    COUNT(*) AS NumEmployees
+FROM Employees
+GROUP BY YEAR(CAST(JoinDate AS DATE))
+ORDER BY JoinYear;
+
