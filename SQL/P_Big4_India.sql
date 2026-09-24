@@ -1183,6 +1183,18 @@ WHERE E.Salary > D.AVG_SAL * 1.2; -- Think of 1.2 as 100% + 20% = 120%, written 
 
 -- 7. Using a CTE, find clients whose ContractValue is more than 20% above their industry's average.
 
+WITH industry_avg AS (
+    SELECT Industry, AVG(ContractValue) AS avg_contract_val
+    FROM Clients
+    GROUP BY Industry
+)
+SELECT c.*
+FROM Clients c
+JOIN industry_avg ia ON c.Industry = ia.Industry
+WHERE c.ContractValue > ia.avg_contract_val * 1.2;
+
+-- 8. Using a CTE, find projects whose Budget is more than 20% above their status group's average.
+
 WITH status_avg AS (
     SELECT Status, AVG(Budget) AS avg_budget
     FROM Projects
@@ -1193,13 +1205,29 @@ FROM Projects p
 JOIN status_avg sa ON p.Status = sa.Status
 WHERE p.Budget > sa.avg_budget * 1.2;
 
--- 8. Using a CTE, find projects whose Budget is more than 20% above their status group's average.
-
-
 -- 9. Using a CTE, find financial records more than 20% above their company's average revenue.
 
+WITH company_avg AS (
+    SELECT Company, AVG(Revenue) AS avg_revenue
+    FROM Company_Financials
+    GROUP BY Company
+)
+SELECT cf.*
+FROM Company_Financials cf
+JOIN company_avg ca ON cf.Company = ca.Company
+WHERE cf.Revenue > ca.avg_revenue * 1.2;
 
 -- 10. Using a CTE, find technologies more than 20% above their company's average popularity.
+
+WITH tech_avg AS (
+    SELECT Company, AVG(Popularity) AS avg_popularity
+    FROM Technologies
+    GROUP BY Company
+)
+SELECT t.*
+FROM Technologies t
+JOIN tech_avg ta ON t.Company = ta.Company
+WHERE t.Popularity > ta.avg_popularity * 1.2;
 
 -- Type C — Date functions (Employees.JoinDate)
 -- 11. Extract the YEAR from JoinDate for each employee.
