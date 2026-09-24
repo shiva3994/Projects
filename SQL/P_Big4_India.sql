@@ -1231,36 +1231,141 @@ WHERE t.Popularity > ta.avg_popularity * 1.2;
 
 -- Type C — Date functions (Employees.JoinDate)
 
+-- CAST('2020-05-01' AS DATE)      -- works fine → 2020-05-01
+-- CAST('not a date' AS DATE)      -- ERROR, query stops
+
+-- TRY_CAST('2020-05-01' AS DATE)  -- works fine → 2020-05-01
+-- TRY_CAST('not a date' AS DATE)  -- no error → NULL
+
 -- 11. Extract the YEAR from JoinDate
+
 SELECT
     Employee_ID,
-    JoinDate,
-    YEAR(CAST(JoinDate AS DATE)) AS JoinYear
-FROM Employees;
+    JoinDate
+FROM Employees
+WHERE TRY_CAST(JoinDate AS DATE) IS NULL;
 
 -- 12. Employees who joined in 2020
+
 SELECT *
 FROM Employees
-WHERE YEAR(CAST(JoinDate AS DATE)) = 2020;
+WHERE YEAR(TRY_CAST(JoinDate AS DATE)) = 2020;
 
 -- 13. Tenure in years (JoinDate to today)
+
 SELECT
     Employee_ID,
     JoinDate,
-    DATEDIFF(YEAR, CAST(JoinDate AS DATE), GETDATE()) AS TenureYears
+    DATEDIFF(YEAR, TRY_CAST(JoinDate AS DATE), GETDATE()) AS TenureYears
 FROM Employees;
 
 -- 14. Earliest and latest JoinDate
+
 SELECT
-    MIN(CAST(JoinDate AS DATE)) AS EarliestJoin,
-    MAX(CAST(JoinDate AS DATE)) AS LatestJoin
+    MIN(TRY_CAST(JoinDate AS DATE)) AS EarliestJoin,
+    MAX(TRY_CAST(JoinDate AS DATE)) AS LatestJoin
 FROM Employees;
 
 -- 15. Count of employees per join year
+
 SELECT
-    YEAR(CAST(JoinDate AS DATE)) AS JoinYear,
+    YEAR(TRY_CAST(JoinDate AS DATE)) AS JoinYear,
     COUNT(*) AS NumEmployees
 FROM Employees
-GROUP BY YEAR(CAST(JoinDate AS DATE))
+GROUP BY YEAR(TRY_CAST(JoinDate AS DATE))
 ORDER BY JoinYear;
 
+
+-- Type D — Multi-concept combo (joins + aggregate + CASE)
+
+-- 16. Label employees 'Overloaded' (>3 projects) or 'Normal'
+
+SELECT
+    e.Employee_ID,
+    e.Role,
+    COUNT(p.Project_ID) AS NumProjects,
+    CASE
+        WHEN COUNT(p.Project_ID) > 3 THEN 'Overloaded'
+        ELSE 'Normal'
+    END AS WorkloadStatus
+FROM Employees e
+JOIN Projects p ON e.Employee_ID = p.Employee_ID
+GROUP BY e.Employee_ID, e.Role;
+
+-- 17. Total Budget per client, label 'Key Account' if > 15,000,000
+
+SELECT
+    c.Client_ID,
+    c.Company,
+    SUM(p.Budget) AS TotalBudget,
+    CASE
+        WHEN SUM(p.Budget) > 15000000 THEN 'Key Account'
+        ELSE 'Regular Account'
+    END AS ClientTier
+FROM Clients c
+JOIN Projects p ON c.Client_ID = p.Client_ID
+GROUP BY c.Client_ID, c.Company;
+
+-- 18. Rank companies by Revenue within each Country
+
+WITH office_country AS (
+    SELECT DISTINCT Company, Country
+    FROM Office_Locations
+),
+company_revenue AS (
+    SELECT Company, SUM(Revenue) AS TotalRevenue
+    FROM Company_Financials
+    GROUP BY Company
+)
+
+SELECT
+    oc.Country,
+    cr.Company,
+    cr.TotalRevenue,
+    RANK() OVER (PARTITION BY oc.Country ORDER BY cr.TotalRevenue DESC) AS RevenueRank
+FROM office_country oc
+JOIN company_revenue cr ON oc.Company = cr.Company;
+
+
+-- 19. Most-used Technology per project Status
+
+WITH tech_counts AS (
+    SELECT
+        p.Status,
+        t.Technology,
+        COUNT(*) AS UsageCount,
+        RANK() OVER (PARTITION BY p.Status ORDER BY COUNT(*) DESC) AS rnk
+    FROM Projects p
+    JOIN Technologies t ON p.Project_ID = t.Project_ID
+    GROUP BY p.Status, t.Technology
+)
+SELECT Status, Technology, UsageCount
+FROM tech_counts
+WHERE rnk = 1;
+
+-- 20. Per company: total Revenue, employee count, average project Budget
+
+WITH revenue_summary AS (
+    SELECT Company, SUM(Revenue) AS TotalRevenue
+    FROM Company_Financials
+    GROUP BY Company
+),
+employee_summary AS (
+    SELECT Company, COUNT(*) AS EmployeeCount
+    FROM Employees
+    GROUP BY Company
+),
+budget_summary AS (
+    SELECT Company, AVG(Budget) AS AvgProjectBudget
+    FROM Projects
+    GROUP BY Company
+)
+
+SELECT
+    r.Company,
+    r.TotalRevenue,
+    e.EmployeeCount,
+    b.AvgProjectBudget
+FROM revenue_summary r
+LEFT JOIN employee_summary e ON r.Company = e.Company
+LEFT JOIN budget_summary b ON r.Company = b.Company;
