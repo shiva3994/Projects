@@ -1239,11 +1239,8 @@ WHERE t.Popularity > ta.avg_popularity * 1.2;
 
 -- 11. Extract the YEAR from JoinDate
 
-SELECT
-    Employee_ID,
-    JoinDate
-FROM Employees
-WHERE TRY_CAST(JoinDate AS DATE) IS NULL;
+SELECT Employee_ID, YEAR(TRY_CAST(JoinDate AS DATE)) AS JoinYear
+FROM Employees;
 
 -- 12. Employees who joined in 2020
 
@@ -1284,12 +1281,9 @@ SELECT
     e.Employee_ID,
     e.Role,
     COUNT(p.Project_ID) AS NumProjects,
-    CASE
-        WHEN COUNT(p.Project_ID) > 3 THEN 'Overloaded'
-        ELSE 'Normal'
-    END AS WorkloadStatus
+    CASE WHEN COUNT(p.Project_ID) > 3 THEN 'Overloaded' ELSE 'Normal' END AS WorkloadStatus
 FROM Employees e
-JOIN Projects p ON e.Employee_ID = p.Employee_ID
+LEFT JOIN Projects p ON e.Employee_ID = p.Employee_ID
 GROUP BY e.Employee_ID, e.Role;
 
 -- 17. Total Budget per client, label 'Key Account' if > 15,000,000
@@ -1303,7 +1297,7 @@ SELECT
         ELSE 'Regular Account'
     END AS ClientTier
 FROM Clients c
-JOIN Projects p ON c.Client_ID = p.Client_ID
+LEFT JOIN Projects p ON c.Client_ID = p.Client_ID
 GROUP BY c.Client_ID, c.Company;
 
 -- 18. Rank companies by Revenue within each Country
