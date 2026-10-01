@@ -6,7 +6,7 @@ Customer_Name,Customer name from CRM,Text,Emma Carter,Customer display/identific
 Customer_Age,Customer age at transaction,Integer,42,Demographic analysis; rare anomalies included
 Customer_Gender,Customer-reported gender,Text,Female,Demographic segmentation
 Customer_Segment,Commercial/lifecycle customer segment,Text,Returning Customer,Customer behavior and value analysis
-Order_Date,Date transaction was placed,Date,2024-11-29,Time-series and seasonality analysis
+Order_Date,Date transaction was placed,Date,29-11-2024,Time-series and seasonality analysis
 Order_Time,Time transaction was placed,Time,14:37:21,Hourly and anomaly analysis
 Sales_Channel,Order channel,Text,Online,Channel performance
 Store_ID,Store/location identifier,Text,NYC-01,Store-level analysis
@@ -19,11 +19,11 @@ Product_Name,Product name,Text,AeroBook 14 Laptop,Product performance
 Product_Category,High-level product category,Text,Electronics,Category analysis
 Product_Subcategory,Detailed product group,Text,Laptops,Subcategory analysis
 Quantity,Units in transaction,Integer,2,Volume/basket-size analysis
-Unit_Price,Price per unit before discount,Decimal,899.00,Pricing analysis
+Unit_Price,Price per unit before discount,Decimal,899,Pricing analysis
 Discount_Percentage,Discount applied,Decimal,10,Promotion and margin analysis
-Sales_Amount,Recorded net sales amount,Decimal,1618.20,Revenue analysis
-Cost_Amount,Recorded transaction cost,Decimal,1400.00,Cost analysis
-Profit,Recorded transaction profit,Decimal,218.20,Profitability analysis
+Sales_Amount,Recorded net sales amount,Decimal,1618.2,Revenue analysis
+Cost_Amount,Recorded transaction cost,Decimal,1400,Cost analysis
+Profit,Recorded transaction profit,Decimal,218.2,Profitability analysis
 Payment_Method,Payment method,Text,Credit Card,Payment behavior
 Order_Status,Operational order status,Text,Completed,Fulfillment analysis
 Shipping_Method,Fulfillment/shipping method,Text,Standard,Delivery analysis
