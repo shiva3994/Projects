@@ -1,15 +1,6 @@
 Python (10)
 
-import pandas as pd and read Dataset_Listings.csv. Print .shape and .head().
-Check data types with .dtypes; explain what each type means.
-Use .isnull().sum() to find missing values per column.
-Select just the name and price-relevant columns using df[[...]].
-Filter rows where room_type == "Private room" using boolean indexing.
-Use .value_counts() on room_type.
-Compute .mean(), .median(), .max() of accomodates.
-Write a for loop that prints the first 5 listing names.
-Create a new column is_large = df['accomodates'] > 4.
-Visual: Bar chart of listing counts per room_type using matplotlib/seaborn.
+
 
 SQL (10)
 
