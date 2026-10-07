@@ -1,29 +1,58 @@
-Python (10)
+Day 2: KPIs, Trends & First SQL Queries
+
+Python Tasks
+2.2	Which product category brings the most revenue, and which has the best profit margin? Show both in a bar chart.  [Easy]
+2.3	List the top 10 products by revenue and the 5 products with the lowest total profit.  [Easy]
+2.4	Is the business growing? Plot yearly revenue (2022 to 2025) and monthly revenue. Which months are strongest, and what could explain it?  [Medium]
+2.5	Which countries and which sales channels bring the most revenue? Show the share % of each.  [Easy]
+2.6	Plot a correlation heatmap of the numeric columns. Does a higher discount hurt profit margin? Explain what you see in simple words.  [Medium]
+SQL Tasks
+2.7	Load sales_clean.csv into a database (MySQL, PostgreSQL or SQL Server). Show the first 10 rows and the total row count.  [Easy]
+2.8	List the distinct countries, cities and product categories. How many stores does each country have?  [Easy]
+2.9	Find the 10 biggest transactions where Sales_Amount is above 1,000, sorted from high to low.  [Easy]
+2.10	For each Order_Status, show the number of transactions and total sales. How much revenue is tied up in Cancelled and Returned orders?  [Easy]
 
 
+Day 3: Customers, Returns & Promotions
 
-SQL (10)
+Python Tasks
+3.1	Which customer segment is the most valuable? Compare total revenue, average sales per transaction and profit margin across Customer_Segment.  [Easy]
+3.2	Group customers into age bands (under 25, 25-34, 35-44, 45-54, 55+). Which band spends the most? Split the result by gender.  [Medium]
+3.3	What is the overall return rate? Which product category and which Return_Reason have the highest returns?  [Medium]
+3.4	Compare average Delivery_Days across Shipping_Method. Do slower deliveries get lower Customer_Rating?  [Medium]
+3.5	Show the rating distribution and the average rating by category and by sales channel. Which area needs a service fix first?  [Easy]
+SQL Tasks
+3.6	Find the top 10 customers by total spend, with their number of transactions.  [Easy]
+3.7	Find repeat customers (more than 3 transactions). What % of all customers are they?  [Medium]
+3.8	Compare promotion codes: transactions, total sales, average discount and total profit. Show blank codes as "No Promo". Which campaign works best?  [Medium]
+3.9	Use CASE WHEN to label each transaction Low (under 100), Medium (100 to 500) or High (above 500). Show the count and total revenue per label.  [Medium]
+3.10	Find the top 5 sales representatives by total sales, and show their profit as well.  [Easy]
 
-SELECT * FROM Listings LIMIT 10;
-SELECT COUNT(*) FROM Listings;
-SELECT DISTINCT room_type FROM Listings;
-SELECT name, accomodates FROM Listings ORDER BY accomodates DESC LIMIT 5;
-SELECT * FROM Listings WHERE bedrooms >= 2;
-SELECT AVG(accomodates) FROM Listings;
-SELECT COUNT(*) FROM Listings WHERE room_type = 'Entire home/apt';
-SELECT name FROM Listings WHERE bedrooms IS NULL;
-SELECT MIN(beds), MAX(beds) FROM Listings;
-SELECT property_type, COUNT(*) FROM Listings GROUP BY property_type;
 
-Power BI (10)
+Day 4: Advanced SQL
 
-Import Dataset_Listings.csv via Get Data.
-Check data types in Power Query (fix any misread as text).
-Build a card visual showing total listing count.
-Build a bar chart: count of listings by room_type.
-Build a bar chart: count of listings by property_type.
-Add a slicer for room_type.
-Create a table visual with name, accomodates, bedrooms.
-Rename a column in Power Query for clarity.
-Sort the bar chart by value descending.
-Save the .pbix file and note one insight you saw.
+4.1	Create three lookup tables from the main table using SELECT DISTINCT: dim_product, dim_store and dim_customer. Check that each key is unique.  [Medium]
+4.2	JOIN the main table with dim_product to show revenue and profit by product name and category.  [Easy]
+4.3	Calculate year-over-year revenue growth % for 2023, 2024 and 2025 (use a CTE and LAG). Which year grew or fell the most?  [Medium]
+4.4	Show monthly revenue for 2025 with a running total (SUM OVER).  [Medium]
+4.5	Find the top 3 products by profit inside each category (ROW_NUMBER or RANK).  [Medium]
+4.6	Show revenue, profit and profit margin % for each store. Which stores are below the company average margin? (use a subquery)  [Medium]
+4.7	How many transactions made a loss (negative profit)? Show total loss by category and by discount band. Is heavy discounting the cause?  [Medium]
+4.8	Calculate return rate % by sales channel and by country. Where should the company act first?  [Medium]
+4.9	Find customers who bought in 2024 but not in 2025 (lost customers). How many are they, and how much did they spend in 2024?  [Medium]
+4.10 Create a view named vw_sales_summary with year, month, country, category, channel, revenue, profit, units and returns. This will feed Power BI.  [Medium]
+
+
+Day 5: Power BI Dashboard
+
+5.1	Connect Power BI to the SQL view or the clean CSV. In Power Query, check data types, rename columns and remove any leftover blanks or duplicates.  [Easy]
+5.2	Create a Date table with DAX (CALENDAR) and link it to Order_Date. Set up relationships with the dim tables if you use them.  [Medium]
+5.3	Write DAX measures: Total Revenue, Total Profit, Profit Margin %, Total Transactions, Average Rating and Return Rate %. Show them as KPI cards.  [Medium]
+5.4	Build a line chart of monthly revenue and profit with a year slicer. Which months and years stand out?  [Easy]
+5.5	Show revenue by country on a map and let users drill down to region and city. Which market is strongest and which is weakest?  [Easy]
+5.6	Show revenue and profit margin by category and subcategory (bar chart or treemap). Which subcategory has high sales but low margin?  [Medium]
+5.7	Compare sales channels and customer segments using a donut or stacked column chart. Which mix gives the best profit?  [Easy]
+5.8	Show the Top 10 products by revenue and the Bottom 5 by profit using a Top N filter.  [Medium]
+5.9	Build a Returns and Delivery page: return rate by reason, average delivery days by shipping method, and average rating by channel.  [Medium]
+5.10 Finish the dashboard with 3 pages (Executive Overview, Sales and Products, Customers and Operations), common slicers and a clean layout. Add a text box with 5 insights and 3 recommendations.  [Medium]
+
