@@ -22,7 +22,9 @@ WHERE Region IN ('Ontario', 'British Columbia','Midwest');
 
 -- S3.4  Use BETWEEN to get orders placed in 2024.
 
-
+SELECT *
+FROM Sales_transactions_2022_2025
+WHERE Order_Date BETWEEN '2024-01-01' AND '2024-12-31';
 
 -- S3.5  Use LIKE to find Product_Names starting with 'Aero'.
 
