@@ -28,7 +28,9 @@ WHERE Order_Date BETWEEN '2024-01-01' AND '2024-12-31';
 
 -- S3.5  Use LIKE to find Product_Names starting with 'Aero'.
 
-
+SELECT *
+FROM Sales_transactions_2022_2025
+WHERE Product_Name LIKE 'Aero%';
 
 -- S3.6  Find transactions where Promotion_Code IS NULL; list distinct countries with an alias.
 
