@@ -16,7 +16,9 @@ WHERE Country = 'Canada' AND Sales_Amount > 500;
 
 -- S3.3  Use IN to filter three regions.
 
-
+SELECT *
+FROM Sales_transactions_2022_2025
+WHERE Region IN ('Ontario', 'British Columbia','Midwest');
 
 -- S3.4  Use BETWEEN to get orders placed in 2024.
 
