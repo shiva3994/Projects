@@ -34,3 +34,37 @@ WHERE Product_Name LIKE 'Aero%';
 
 -- S3.6  Find transactions where Promotion_Code IS NULL; list distinct countries with an alias.
 
+
+
+-- S4.1  Top 10 transactions by Sales_Amount.
+
+
+
+-- S4.2  Sort by Country ascending, then Profit descending.
+
+
+
+-- S4.3  The 5 lowest-profit transactions.
+
+
+
+-- S4.4  Latest orders first, using Order_Date and Order_Time.
+
+
+
+-- S4.5  Find the 3rd highest Sales_Amount using OFFSET (or a subquery).
+
+
+
+-- S4.6  Sort so NULL Customer_Ratings appear last.
+
+
+
+
+
+
+
+
+
+
+
