@@ -71,7 +71,6 @@ FROM Sales_transactions_2022_2025
 ORDER BY Order_Date DESC,
 		 Order_Time DESC;
 
-
 -- S4.5  Find the 3rd highest Sales_Amount using OFFSET (or a subquery).
 
 
