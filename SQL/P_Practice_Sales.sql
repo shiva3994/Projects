@@ -34,9 +34,11 @@ WHERE Product_Name LIKE 'Aero%';
 
 -- S3.6  Find transactions where Promotion_Code IS NULL; list distinct countries with an alias.
 
-SELECT DISTINCT(Promotion_Code)
+SELECT 
+	DISTINCT(Country),
+	Promotion_Code
 FROM Sales_transactions_2022_2025
-WHERE 
+WHERE Promotion_Code IS NULL;
 
 -- S4.1  Top 10 transactions by Sales_Amount.
 
