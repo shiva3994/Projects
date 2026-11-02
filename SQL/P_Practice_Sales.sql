@@ -55,7 +55,9 @@ ORDER BY Country ASC,
 
 -- S4.3  The 5 lowest-profit transactions.
 
-
+SELECT TOP 5 *
+FROM Sales_transactions_2022_2025
+ORDER BY Profit ASC;
 
 -- S4.4  Latest orders first, using Order_Date and Order_Time.
 
