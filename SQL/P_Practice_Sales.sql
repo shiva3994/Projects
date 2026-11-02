@@ -42,7 +42,9 @@ WHERE Promotion_Code IS NULL;
 
 -- S4.1  Top 10 transactions by Sales_Amount.
 
-
+SELECT TOP 10 *
+FROM Sales_transactions_2022_2025
+ORDER BY Sales_Amount DESC;
 
 -- S4.2  Sort by Country ascending, then Profit descending.
 
