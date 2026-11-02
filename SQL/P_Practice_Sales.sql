@@ -93,55 +93,66 @@ FROM Sales_transactions_2022_2025
 ORDER BY Customer_Rating DESC;
 
 
-S5. GROUP BY with Aggregations
-S5.1  COUNT, SUM, AVG, MIN and MAX of Sales_Amount in one query.
-S5.2  Total revenue per Product_Category.
-S5.3  Transaction count and average rating per Sales_Channel.
-S5.4  Explain COUNT(*), COUNT(column) and COUNT(DISTINCT Customer_ID) with this data.
-S5.5  Revenue by Country and Order_Year.
-S5.6  Profit margin % per Store.
+-- S5. GROUP BY with Aggregations
+
+-- S5.1  COUNT, SUM, AVG, MIN and MAX of Sales_Amount in one query.
+
+
+-- S5.2  Total revenue per Product_Category.
+
+
+-- S5.3  Transaction count and average rating per Sales_Channel.
+
+
+-- S5.4  Explain COUNT(*), COUNT(column) and COUNT(DISTINCT Customer_ID) with this data.
+
+
+-- S5.5  Revenue by Country and Order_Year.
+
+
+-- S5.6  Profit margin % per Store.
 
  
 
-S6. GROUP BY with HAVING
-S6.1  Categories with total revenue above 1,000,000.
-S6.2  Customers with more than 3 transactions.
-S6.3  Stores with average Customer_Rating below 4.
-S6.4  Explain WHERE vs HAVING with an example.
-S6.5  Promotion codes with at least 50 transactions and total profit above 10,000.
-S6.6  Products with more than 10 returned transactions.
+-- S6. GROUP BY with HAVING
+-- S6.1  Categories with total revenue above 1,000,000.
+-- S6.2  Customers with more than 3 transactions.
+-- S6.3  Stores with average Customer_Rating below 4.
+-- S6.4  Explain WHERE vs HAVING with an example.
+-- S6.5  Promotion codes with at least 50 transactions and total profit above 10,000.
+-- S6.6  Products with more than 10 returned transactions.
 
 
 
-S7. CASE Statements
-S7.1  Label each transaction Low (<100), Medium (100-500) or High (>500).
-S7.2  Create age bands (under 25, 25-34, 35-44, 45-54, 55+).
-S7.3  Pivot-style output: count of transactions per Sales_Channel as separate columns using CASE.
-S7.4  Conditional sum: revenue from Returned vs not Returned transactions.
-S7.5  Show 'No Promo' when Promotion_Code is blank.
-S7.6  Use CASE inside an UPDATE or ORDER BY.
-
-
-
-
-S8. Date Functions
-S8.1  Extract year, month and day-of-week from Order_Date.
-S8.2  Orders in the last 90 days from a given date (DATEDIFF).
-S8.3  Monthly revenue with month names, sorted in calendar order.
-S8.4  Add Delivery_Days to Order_Date to get the delivery date (DATE_ADD / DATEADD).
-S8.5  Format Order_Date as 'YYYY-MM'.
-S8.6  Orders placed on weekends; count orders by hour of Order_Time.
+-- S7. CASE Statements
+-- S7.1  Label each transaction Low (<100), Medium (100-500) or High (>500).
+-- S7.2  Create age bands (under 25, 25-34, 35-44, 45-54, 55+).
+-- S7.3  Pivot-style output: count of transactions per Sales_Channel as separate columns using CASE.
+-- S7.4  Conditional sum: revenue from Returned vs not Returned transactions.
+-- S7.5  Show 'No Promo' when Promotion_Code is blank.
+-- S7.6  Use CASE inside an UPDATE or ORDER BY.
 
 
 
 
-S9. Data Manipulation: UPDATE, DELETE
-S9.1  Update Region 'NRW' to 'North Rhine-Westphalia'.
-S9.2  Cap Discount_Percentage at 50 where it is higher.
-S9.3  Delete rows where Quantity <= 0 (what do you run first as a safety check?).
-S9.4  Delete duplicate Transaction_IDs using ROW_NUMBER in a CTE.
-S9.5  DELETE vs TRUNCATE vs DROP: differences.
-S9.6  Use a transaction with ROLLBACK to test a risky UPDATE.
+-- S8. Date Functions
+-- S8.1  Extract year, month and day-of-week from Order_Date.
+-- S8.2  Orders in the last 90 days from a given date (DATEDIFF).
+-- S8.3  Monthly revenue with month names, sorted in calendar order.
+-- S8.4  Add Delivery_Days to Order_Date to get the delivery date (DATE_ADD / DATEADD).
+-- S8.5  Format Order_Date as 'YYYY-MM'.
+-- S8.6  Orders placed on weekends; count orders by hour of Order_Time.
+
+
+
+
+-- S9. Data Manipulation: UPDATE, DELETE
+-- S9.1  Update Region 'NRW' to 'North Rhine-Westphalia'.
+-- S9.2  Cap Discount_Percentage at 50 where it is higher.
+-- S9.3  Delete rows where Quantity <= 0 (what do you run first as a safety check?).
+-- S9.4  Delete duplicate Transaction_IDs using ROW_NUMBER in a CTE.
+-- S9.5  DELETE vs TRUNCATE vs DROP: differences.
+-- S9.6  Use a transaction with ROLLBACK to test a risky UPDATE.
 
 
 
