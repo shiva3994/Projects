@@ -61,6 +61,15 @@ ORDER BY Profit ASC;
 
 -- S4.4  Latest orders first, using Order_Date and Order_Time.
 
+SELECT
+	Order_ID,
+	Sales_Channel,
+	City,
+	Order_Date,
+	Order_Time
+FROM Sales_transactions_2022_2025
+ORDER BY Order_Date DESC,
+		 Order_Time DESC;
 
 
 -- S4.5  Find the 3rd highest Sales_Amount using OFFSET (or a subquery).
