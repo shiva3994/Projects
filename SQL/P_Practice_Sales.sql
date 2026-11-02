@@ -73,7 +73,17 @@ ORDER BY Order_Date DESC,
 
 -- S4.5  Find the 3rd highest Sales_Amount using OFFSET (or a subquery).
 
+SELECT TOP 3
+	Sales_Amount
+FROM Sales_transactions_2022_2025
+ORDER BY Sales_Amount DESC; -- LIST CHECK
 
+-- CORRECT QUERY
+
+SELECT DISTINCT Sales_Amount
+FROM Sales_transactions_2022_2025
+ORDER BY Sales_Amount DESC
+OFFSET 2 ROWS FETCH NEXT 1 ROW ONLY;
 
 -- S4.6  Sort so NULL Customer_Ratings appear last.
 
