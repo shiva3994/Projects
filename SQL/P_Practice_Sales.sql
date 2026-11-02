@@ -48,7 +48,10 @@ ORDER BY Sales_Amount DESC;
 
 -- S4.2  Sort by Country ascending, then Profit descending.
 
-
+SELECT *
+FROM Sales_transactions_2022_2025
+ORDER BY Country ASC,
+		 Profit DESC 
 
 -- S4.3  The 5 lowest-profit transactions.
 
